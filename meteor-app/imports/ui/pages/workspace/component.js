@@ -85,7 +85,7 @@ export default class Page_Workspace extends React.Component {
 
   _yearStepBackButtonOnClick (/*event*/) {
     const {
-      filterMin,
+      //filterMin,
       filterValue,
       updateFilterValue,
     } = this.props;
@@ -95,7 +95,7 @@ export default class Page_Workspace extends React.Component {
 
   _yearStepForwardButtonOnClick (/*event*/) {
     const {
-      filterMax,
+      //filterMax,
       filterValue,
       updateFilterValue,
     } = this.props;
