@@ -146,6 +146,19 @@ export default class Page_Workspace extends React.Component {
               <label>{filterValue}</label>
               <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
             </div>
+            <div className="filter-min">
+              <label>Min: </label>
+              <input
+                className="layout_fill"
+                type="range"
+                step="1"
+                value={filterMin}
+                onChange={this._bound_rangeFilterOnChange}
+              />
+              <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+              <label>{filterValue}</label>
+              <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
+            </div>
           </div>
         </fieldset>
         <fieldset>
