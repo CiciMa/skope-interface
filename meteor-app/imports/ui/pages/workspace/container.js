@@ -57,9 +57,9 @@ export default createContainer((props) => {
     inspectPointData: Object.keys(inspectPointData ? inspectPointData.data : {}).map((sourceName) => ({
       label: sourceName,
       data: inspectPointData.data[sourceName]
-            .filter((value, valueIndex) => valueIndex >= filterValue)
+            .filter((value, valueIndex) => valueIndex >= filterMin)
             .map((value, valueIndex) => ({
-              x: filterValue + valueIndex,
+              x: filterMin + valueIndex,
               y: value,
             })),
     })),
