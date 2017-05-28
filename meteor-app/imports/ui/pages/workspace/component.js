@@ -31,6 +31,7 @@ export default class Page_Workspace extends React.Component {
     filterValue: PropTypes.number.isRequired,
     // Callback function for updating filter value.
     updateFilterValue: PropTypes.func.isRequired,
+    updateFilterMin: PropTypes.func.isRequired,
   };
 
   componentDidMount () {
@@ -43,6 +44,7 @@ export default class Page_Workspace extends React.Component {
     super(props);
 
     this._bound_rangeFilterOnChange = this._rangeFilterOnChange.bind(this);
+    this._bound_rangeFilterMinOnChange = this._rangeFilterMinOnChange.bind(this);
     this._bound_yearStepBackButtonOnClick = this._yearStepBackButtonOnClick.bind(this);
     this._bound_yearStepForwardButtonOnClick = this._yearStepForwardButtonOnClick.bind(this);
     this._bound_layerVisibilityOnChange = this._layerVisibilityOnChange.bind(this);
@@ -59,6 +61,17 @@ export default class Page_Workspace extends React.Component {
     } = this.props;
 
     updateFilterValue(target.value);
+  }
+    
+  _rangeFilterMinOnChange (event) {
+    console.info('filter min changed', Date.now());
+
+    const target = event.currentTarget;
+    const {
+      updateFilterMin,
+    } = this.props;
+
+    updateFilterMin(target.value);
   }
 
   _layerVisibilityOnChange (event) {
@@ -149,11 +162,11 @@ export default class Page_Workspace extends React.Component {
             <div className="filter-min">
               <label>Min: </label>
               <input
-                className="layout_fill2"
+                className="layout_fill"
                 type="range"
                 step="1"
                 value={filterMin}
-                onChange={this._bound_rangeFilterOnChange}
+                onChange={this._bound_rangeFilterMinOnChange}
               />
               <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
               <label>{filterValue}</label>

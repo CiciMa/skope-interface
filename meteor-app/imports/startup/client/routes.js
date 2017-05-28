@@ -124,6 +124,11 @@ FlowRouter.route("/workspace", {
               filterValue: newValue,
             });
           },
+          updateFilterMin: (newValue) => {
+            FlowRouter.go(path, {}, {
+              filterMin: newValue,
+            });
+          },
         }} />
       ),
     });
