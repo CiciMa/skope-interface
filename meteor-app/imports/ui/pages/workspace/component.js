@@ -149,7 +149,7 @@ export default class Page_Workspace extends React.Component {
             <div className="filter-min">
               <label>Min: </label>
               <input
-                className="layout_fill"
+                className="layout_fill2"
                 type="range"
                 step="1"
                 value={filterMin}
