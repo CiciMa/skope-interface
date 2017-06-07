@@ -42,6 +42,7 @@ export default {
     // If a point is selected for inspection, the loaded data will be stored here.
     inspectPointData: null,
 
+    filterMin: null,
     filterValue: null,
   },
 };

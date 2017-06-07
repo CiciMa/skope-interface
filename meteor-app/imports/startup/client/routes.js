@@ -124,7 +124,11 @@ FlowRouter.route("/workspace", {
       body: (
         <Page_Workspace {...{
           store,
-
+          updateFilterValue: (newValue) => {
+            FlowRouter.go(path, {}, {
+              filterValue: newValue,
+            });
+          },
           updateFilterMin: (newValue) => {
             FlowRouter.go(path, {}, {
               filterMin: newValue,
