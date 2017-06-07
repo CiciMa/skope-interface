@@ -65,6 +65,8 @@ export default class Page_Workspace extends React.Component {
 
     if(target.value >= filterMin) {
         updateFilterValue(target.value);
+    } else {
+        updateFilterValue(filterMin);
     }
   }
     
@@ -79,6 +81,8 @@ export default class Page_Workspace extends React.Component {
 
     if(target.value <= filterValue) {
         updateFilterMin(target.value);
+    } else {
+        updateFilterMin(filterValue);
     }
   }
 
