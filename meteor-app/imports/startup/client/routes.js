@@ -111,12 +111,8 @@ FlowRouter.route("/workspace", {
 
     store.dispatch({
       type: actions.WORKSPACE_SET_FILTER_FROM_URL.type,
-      value: queryParams.filterValue,
-    });
-      
-    store.dispatch({
-      type: actions.WORKSPACE_SET_FILTER_MIN_FROM_URL.type,
-      value: queryParams.filterMin,
+      value1: queryParams.filterValue,
+      value2: queryParams.filterMin,
     });
 
     mount(Layout_FullWindow, {
