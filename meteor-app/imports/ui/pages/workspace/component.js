@@ -164,12 +164,14 @@ export default class Page_Workspace extends React.Component {
               <input
                 className="layout_fill"
                 type="range"
+                min=0
+                max={filterMax}
                 step="1"
                 value={filterMin}
                 onChange={this._bound_rangeFilterMinOnChange}
               />
               <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
-              <label>{filterValue}</label>
+              <label>{filterMin}</label>
               <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
             </div>
           </div>
