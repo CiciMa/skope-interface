@@ -59,10 +59,13 @@ export default class Page_Workspace extends React.Component {
 
     const target = event.currentTarget;
     const {
+      filterMin,
       updateFilterValue,
     } = this.props;
 
-    updateFilterValue(target.value);
+    if(target.value >= filterMin) {
+        updateFilterValue(target.value);
+    }
   }
     
   _rangeFilterMinOnChange (event) {
@@ -70,10 +73,13 @@ export default class Page_Workspace extends React.Component {
 
     const target = event.currentTarget;
     const {
+      filterValue,
       updateFilterMin,
     } = this.props;
 
-    updateFilterMin(target.value);
+    if(target.value <= filterValue) {
+        updateFilterMin(target.value);
+    }
   }
 
   _layerVisibilityOnChange (event) {
