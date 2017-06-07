@@ -123,10 +123,12 @@ FlowRouter.route("/workspace", {
           updateFilterValue: (newValue) => {
             FlowRouter.go(path, {}, {
               filterValue: newValue,
+              filterMin: filterMin,
             });
           },
           updateFilterMin: (newValue) => {
             FlowRouter.go(path, {}, {
+              filterValue: filterValue,
               filterMin: newValue,
             });
           },
