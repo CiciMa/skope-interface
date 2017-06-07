@@ -47,6 +47,8 @@ export default class Page_Workspace extends React.Component {
     this._bound_rangeFilterMinOnChange = this._rangeFilterMinOnChange.bind(this);
     this._bound_yearStepBackButtonOnClick = this._yearStepBackButtonOnClick.bind(this);
     this._bound_yearStepForwardButtonOnClick = this._yearStepForwardButtonOnClick.bind(this);
+    this._bound_yearMinStepBackButtonOnClick = this._yearMinStepBackButtonOnClick.bind(this);
+    this._bound_yearMinStepForwardButtonOnClick = this._yearMinStepForwardButtonOnClick.bind(this);
     this._bound_layerVisibilityOnChange = this._layerVisibilityOnChange.bind(this);
     this._bound_layerOpacityOnChange = this._layerOpacityOnChange.bind(this);
     this._bound_mapOnClick = this._mapOnClick.bind(this);
@@ -115,6 +117,25 @@ export default class Page_Workspace extends React.Component {
 
     updateFilterValue(Math.min(filterMax, filterValue + 1));
   }
+    
+  _yearMinStepBackButtonOnClick (/*event*/) {
+    const {
+      filterMin,
+      updateFilterMin,
+    } = this.props;
+
+    updateFilterMin(Math.max(filterMin, 0));
+  }
+
+  _yearMinStepForwardButtonOnClick (/*event*/) {
+    const {
+      filterMin,
+      filterValue,
+      updateFilterMin,
+    } = this.props;
+
+    updateFilterMin(Math.min(filterMin, filterValue));
+  }
 
   _mapOnClick (event) {
     const {
@@ -170,9 +191,9 @@ export default class Page_Workspace extends React.Component {
                 value={filterMin}
                 onChange={this._bound_rangeFilterMinOnChange}
               />
-              <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+              <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
               <label>{filterMin}</label>
-              <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
+              <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
             </div>
           </div>
         </fieldset>
