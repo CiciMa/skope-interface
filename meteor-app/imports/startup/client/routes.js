@@ -114,11 +114,10 @@ FlowRouter.route("/workspace", {
       value: queryParams.filterValue,
     });
       
-      /*
     store.dispatch({
       type: actions.WORKSPACE_SET_FILTER_MIN_FROM_URL.type,
       value: queryParams.filterMin,
-    });*/
+    });
 
     mount(Layout_FullWindow, {
       store,
