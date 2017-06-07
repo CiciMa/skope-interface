@@ -124,7 +124,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMin,
     } = this.props;
 
-    updateFilterMin(Math.max(filterMin, 0));
+    updateFilterMin(Math.max(filterMin - 1, 0));
   }
 
   _yearMinStepForwardButtonOnClick (/*event*/) {
@@ -134,7 +134,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMin,
     } = this.props;
 
-    updateFilterMin(Math.min(filterMin, filterValue));
+    updateFilterMin(Math.min(filterMin + 1, filterValue));
   }
 
   _mapOnClick (event) {
