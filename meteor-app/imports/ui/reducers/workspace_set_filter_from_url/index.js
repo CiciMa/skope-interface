@@ -12,7 +12,7 @@ export const WORKSPACE_SET_FILTER_FROM_URL = (state, action) => {
   } = action;
   const filterValue = typeof value1 === 'undefined' ? 2000 : parseInt(value1);
   const filterMin = typeof value2 === 'undefined' ? 0 : parseInt(value2);
-  const filterMax = typeof value3 === 'undefined' ? 0 : parseInt(value3);
+  const filterMax = typeof value3 === 'undefined' ? 2000 : parseInt(value3);
 
   return {
     ...state,
