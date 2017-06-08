@@ -1,0 +1,4 @@
+/**
+ * Define UI constants here.
+ */
+
