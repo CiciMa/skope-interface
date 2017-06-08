@@ -51,6 +51,8 @@ export default class Page_Workspace extends React.Component {
     this._bound_yearStepForwardButtonOnClick = this._yearStepForwardButtonOnClick.bind(this);
     this._bound_yearMinStepBackButtonOnClick = this._yearMinStepBackButtonOnClick.bind(this);
     this._bound_yearMinStepForwardButtonOnClick = this._yearMinStepForwardButtonOnClick.bind(this);
+    this._bound_yearMaxStepBackButtonOnClick = this._yearMaxStepBackButtonOnClick.bind(this);
+    this._bound_yearMaxStepForwardButtonOnClick = this._yearMaxStepForwardButtonOnClick.bind(this);
     this._bound_layerVisibilityOnChange = this._layerVisibilityOnChange.bind(this);
     this._bound_layerOpacityOnChange = this._layerOpacityOnChange.bind(this);
     this._bound_mapOnClick = this._mapOnClick.bind(this);
