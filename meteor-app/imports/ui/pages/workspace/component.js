@@ -183,7 +183,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMax,
     } = this.props;
 
-    updateFilterMax(Math.min(filterMin + 1, 2000));
+    updateFilterMax(Math.min(filterMax + 1, 2000));
   }
 
   _mapOnClick (event) {
