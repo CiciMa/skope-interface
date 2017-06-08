@@ -32,6 +32,7 @@ export default class Page_Workspace extends React.Component {
     // Callback function for updating filter value.
     updateFilterValue: PropTypes.func.isRequired,
     updateFilterMin: PropTypes.func.isRequired,
+    updateFilterMax: PropTypes.func.isRequired,
   };
 
   componentDidMount () {
@@ -45,6 +46,7 @@ export default class Page_Workspace extends React.Component {
 
     this._bound_rangeFilterOnChange = this._rangeFilterOnChange.bind(this);
     this._bound_rangeFilterMinOnChange = this._rangeFilterMinOnChange.bind(this);
+    this._bound_rangeFilterMaxOnChange = this._rangeFilterMaxOnChange.bind(this);
     this._bound_yearStepBackButtonOnClick = this._yearStepBackButtonOnClick.bind(this);
     this._bound_yearStepForwardButtonOnClick = this._yearStepForwardButtonOnClick.bind(this);
     this._bound_yearMinStepBackButtonOnClick = this._yearMinStepBackButtonOnClick.bind(this);
@@ -83,6 +85,22 @@ export default class Page_Workspace extends React.Component {
         updateFilterMin(target.value);
     } else {
         updateFilterMin(filterValue);
+    }
+  }
+    
+  _rangeFilterMaxOnChange (event) {
+    console.info('filter max changed', Date.now());
+
+    const target = event.currentTarget;
+    const {
+      filterValue,
+      updateFilterMax,
+    } = this.props;
+
+    if(target.value >= filterValue) {
+        updateFilterMax(target.value);
+    } else {
+        updateFilterMax(filterValue);
     }
   }
 
@@ -146,6 +164,25 @@ export default class Page_Workspace extends React.Component {
 
     updateFilterMin(Math.min(filterMin + 1, filterValue));
   }
+    
+  _yearMaxStepBackButtonOnClick (/*event*/) {
+    const {
+      filterMax,
+      filterValue,
+      updateFilterMax,
+    } = this.props;
+
+    updateFilterMax(Math.max(filterMax - 1, filterValue));
+  }
+
+  _yearMaxStepForwardButtonOnClick (/*event*/) {
+    const {
+      filterMax,
+      updateFilterMax,
+    } = this.props;
+
+    updateFilterMax(Math.min(filterMin + 1, 2000));
+  }
 
   _mapOnClick (event) {
     const {
@@ -204,6 +241,21 @@ export default class Page_Workspace extends React.Component {
               <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
               <label>{filterMin}</label>
               <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
+            </div>
+            <div className="filter-max">
+              <label>Max: </label>
+              <input
+                className="layout_fill"
+                type="range"
+                min={filterMin}
+                max={2000}
+                step="1"
+                value={filterMax}
+                onChange={this._bound_rangeFilterMaxOnChange}
+              />
+              <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
+              <label>{filterMax}</label>
+              <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
             </div>
           </div>
         </fieldset>

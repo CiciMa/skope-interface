@@ -3,10 +3,6 @@ import { Tracker } from "meteor/tracker";
 import { createContainer } from "meteor/react-meteor-data";
 import Component from "./component";
 
-import {
-  filterMax,
-} from "/imports/ui/consts";
-
 import * as actions from "/imports/ui/actions";
 
 export default createContainer((props) => {
@@ -26,6 +22,7 @@ export default createContainer((props) => {
       inspectPointData,
 
       filterMin,
+      filterMax,
       filterValue,
     },
   } = store.getState();

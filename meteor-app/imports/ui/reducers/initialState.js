@@ -44,5 +44,6 @@ export default {
 
     filterMin: null,
     filterValue: null,
+    filterMax: null,
   },
 };

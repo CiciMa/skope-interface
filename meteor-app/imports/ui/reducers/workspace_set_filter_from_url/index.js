@@ -8,9 +8,11 @@ export const WORKSPACE_SET_FILTER_FROM_URL = (state, action) => {
   const {
     value1,
     value2,
+    value3,
   } = action;
   const filterValue = typeof value1 === 'undefined' ? filterMax : parseInt(value1);
   const filterMin = typeof value2 === 'undefined' ? 0 : parseInt(value2);
+  const filterMax = typeof value3 === 'undefined' ? 0 : parseInt(value3);
 
   return {
     ...state,
@@ -20,6 +22,7 @@ export const WORKSPACE_SET_FILTER_FROM_URL = (state, action) => {
 
       filterValue,
       filterMin,
+      filterMax,
     },
   };
 };

@@ -113,6 +113,7 @@ FlowRouter.route("/workspace", {
       type: actions.WORKSPACE_SET_FILTER_FROM_URL.type,
       value1: queryParams.filterValue,
       value2: queryParams.filterMin,
+      value3: queryParams.filterMax,
     });
 
     mount(Layout_FullWindow, {
@@ -124,12 +125,21 @@ FlowRouter.route("/workspace", {
             FlowRouter.go(path, {}, {
               filterValue: newValue,
               filterMin: queryParams.filterMin,
+              filterMax: queryParams.filterMax,
             });
           },
           updateFilterMin: (newValue) => {
             FlowRouter.go(path, {}, {
               filterValue: queryParams.filterValue,
+              filterMax: queryParams.filterMax,
               filterMin: newValue,
+            });
+          },
+          updateFilterMax: (newValue) => {
+            FlowRouter.go(path, {}, {
+              filterValue: queryParams.filterValue,
+              filterMax: newValue,
+              filterMin: queryParams.filterMin,
             });
           },
         }} />
