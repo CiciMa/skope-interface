@@ -29,6 +29,10 @@ export default class Page_Workspace extends React.Component {
     filterMax: PropTypes.number.isRequired,
     // Current value of the filter slider.
     filterValue: PropTypes.number.isRequired,
+      
+    rangeMin: PropTypes.number.isRequired,
+    rangeMax: PropTypes.number.isRequired,
+      
     // Callback function for updating filter value.
     updateFilterValue: PropTypes.func.isRequired,
     updateFilterMin: PropTypes.func.isRequired,
@@ -154,7 +158,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMin,
     } = this.props;
 
-    updateFilterMin(Math.max(filterMin - 1, 0));
+    updateFilterMin(Math.max(filterMin - 1, rangeMin));
   }
 
   _yearMinStepForwardButtonOnClick (/*event*/) {
@@ -183,7 +187,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMax,
     } = this.props;
 
-    updateFilterMax(Math.min(filterMax + 1, 2000));
+    updateFilterMax(Math.min(filterMax + 1, rangeMax));
   }
 
   _mapOnClick (event) {
@@ -207,6 +211,8 @@ export default class Page_Workspace extends React.Component {
       filterMin,
       filterMax,
       filterValue,
+      rangeMin,
+      rangeMax,
     } = this.props;
 
     return (
@@ -234,7 +240,7 @@ export default class Page_Workspace extends React.Component {
               <input
                 className="layout_fill"
                 type="range"
-                min="0"
+                min={rangeMin}
                 max={filterMax}
                 step="1"
                 value={filterMin}
@@ -250,7 +256,7 @@ export default class Page_Workspace extends React.Component {
                 className="layout_fill"
                 type="range"
                 min={filterMin}
-                max={2000}
+                max={rangeMax}
                 step="1"
                 value={filterMax}
                 onChange={this._bound_rangeFilterMaxOnChange}

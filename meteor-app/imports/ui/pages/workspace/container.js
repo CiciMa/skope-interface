@@ -3,6 +3,11 @@ import { Tracker } from "meteor/tracker";
 import { createContainer } from "meteor/react-meteor-data";
 import Component from "./component";
 
+import {
+  rangeMin,
+  rangeMax,
+} from "/imports/ui/consts";
+
 import * as actions from "/imports/ui/actions";
 
 export default createContainer((props) => {
@@ -88,5 +93,7 @@ export default createContainer((props) => {
     filterMin,
     filterMax,
     filterValue,
+    rangeMin,
+    rangeMax,
   };
 }, Component);
