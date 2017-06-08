@@ -174,8 +174,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMax,
     } = this.props;
 
-    //updateFilterMax(Math.max(filterMax - 1, filterValue));
-      updateFilterMax(2000);
+    updateFilterMax(Math.max(filterMax - 1, filterValue));
   }
 
   _yearMaxStepForwardButtonOnClick (/*event*/) {
