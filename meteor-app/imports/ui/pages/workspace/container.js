@@ -35,8 +35,21 @@ export default createContainer((props) => {
   return {
     layers: layers.map((layer) => ({
       ...layer,
-      url: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue}-color/{z}/{x}/{-y}.png`,
-      nextUrl: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue + 1}-color/{z}/{x}/{-y}.png`,
+      //url: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue}-color/{z}/{x}/{-y}.png`,
+      //nextUrl: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue + 1}-color/{z}/{x}/{-y}.png`,
+      url: `
+            http://141.142.170.100:8080/geoserver/wms?
+            request=GetMap
+            &service=WMS
+            &version=1.1.1
+            &layers=GDD
+            &styles=2000
+            &srs=EPSG%3A4326
+            &bbox=-145.15104058007,21.731919794922,-57.154894212888,58.961058642578&
+            &width=780
+            &height=330
+            &format=image%2Fpng
+        `,
     })),
     toggleLayer: (layerIndex, visible) => {
       store.dispatch({
