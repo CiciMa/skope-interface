@@ -300,7 +300,7 @@ export default class Page_Workspace extends React.Component {
                   key={layerIndex}
                 >
                   <map-layer-twms
-                    name={layer.name}
+                    name="skope:GDD_one_band"
                     url={layer.url}
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
