@@ -300,7 +300,7 @@ export default class Page_Workspace extends React.Component {
                   key={layerIndex}
                 >
                   <map-layer-twms
-                    name="skope:GDD_one_band"
+                    name={layer.name}
                     url={layer.url}
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
@@ -308,7 +308,7 @@ export default class Page_Workspace extends React.Component {
                     opacity={layer.opacity}
                     extent={layer.extent}
                     server-type="geoserver"
-                    params="LAYERS=topp%3Astates&TILED=true"
+                    params="LAYERS=skope:GDD_one_band&TILED=true"
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz
