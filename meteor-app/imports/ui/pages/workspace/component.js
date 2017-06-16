@@ -308,7 +308,7 @@ export default class Page_Workspace extends React.Component {
                     opacity={layer.opacity}
                     extent={layer.extent}
                     server-type="geoserver"
-                    params="LAYERS=skope:GDD_one_band&TILED=true"
+                    params="LAYERS=" + {layer.name} + "&TILED=true"
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz
