@@ -307,13 +307,8 @@ export default class Page_Workspace extends React.Component {
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
-                    params= {'FORMAT': 'image/png', 
-                        'VERSION': '1.1.1',
-                        tiled: true,
-                        STYLES: '',
-                        LAYERS: 'skope:GDD_one_band',
-                        tilesOrigin: -114.995833 + "," + 30.995832999999998
-                      }
+                    server-type="geoserver"
+                    params="LAYERS=topp%3Astates&TILED=true"
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz
