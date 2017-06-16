@@ -300,15 +300,14 @@ export default class Page_Workspace extends React.Component {
                   key={layerIndex}
                 >
                   <map-layer-twms
-                    name={layer.name}
                     url={layer.url}
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
-                    server-type="geoserver"
                     params={"LAYERS=" + layer.name + "&TILED=true"}
+                    server-type="geoserver"
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz
