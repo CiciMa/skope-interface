@@ -299,7 +299,7 @@ export default class Page_Workspace extends React.Component {
                 <map-layer-group
                   key={layerIndex}
                 >
-                  <map-layer-xyz
+                  <map-layer-twms
                     name={layer.name}
                     url={layer.url}
                     min-zoom={layer.minZoom}
@@ -307,7 +307,7 @@ export default class Page_Workspace extends React.Component {
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
-                  ></map-layer-xyz>
+                  ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz
                       name={`${layer.name} (preload)`}
