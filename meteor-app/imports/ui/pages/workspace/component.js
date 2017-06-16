@@ -307,7 +307,7 @@ export default class Page_Workspace extends React.Component {
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
-                    params: {'FORMAT': 'image/png', 
+                    params= {'FORMAT': 'image/png', 
                         'VERSION': '1.1.1',
                         tiled: true,
                         STYLES: '',
