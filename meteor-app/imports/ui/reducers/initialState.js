@@ -14,8 +14,7 @@ export default {
     //! For testing only. Should be empty on start.
     layers: [
       {
-        name: "skope:GDD_one_band",
-        urlTile: "PPT_water_year",
+        name: "	skope:GDD_may_sep_band_",
         minZoom: 5,
         maxZoom: 12,
         invisible: false,

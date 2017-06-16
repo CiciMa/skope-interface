@@ -306,7 +306,7 @@ export default class Page_Workspace extends React.Component {
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
-                    params={"LAYERS=" + layer.name + "&TILED=true"}
+                    params={"LAYERS=" + layer.name + filterValue + "&TILED=true"}
                     server-type="geoserver"
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
