@@ -301,13 +301,19 @@ export default class Page_Workspace extends React.Component {
                 >
                   <map-layer-twms
                     name={layer.name}
-                    layers="skope:GDD_one_band"
                     url={layer.url}
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
                     invisible={layer.invisible ? "invisible" : null}
                     opacity={layer.opacity}
                     extent={layer.extent}
+                    params: {'FORMAT': 'image/png', 
+                        'VERSION': '1.1.1',
+                        tiled: true,
+                        STYLES: '',
+                        LAYERS: 'skope:GDD_one_band',
+                        tilesOrigin: -114.995833 + "," + 30.995832999999998
+                      }
                   ></map-layer-twms>
                   {!layer.nextUrl ? null : (
                     <map-layer-xyz

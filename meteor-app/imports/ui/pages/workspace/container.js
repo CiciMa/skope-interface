@@ -38,14 +38,6 @@ export default createContainer((props) => {
       //url: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue}-color/{z}/{x}/{-y}.png`,
       //nextUrl: `http://demo.openskope.org/static_tiles/${layer.urlTile}/tiles/${layer.urlTile}-${filterValue + 1}-color/{z}/{x}/{-y}.png`,
       url: 'http://141.142.170.103:80/geoserver/skope/wms',
-        /*
-      params: {'FORMAT': 'image/png', 
-        'VERSION': '1.1.1',
-        tiled: true,
-        STYLES: '',
-        LAYERS: 'skope:GDD_one_band',
-        tilesOrigin: -114.995833 + "," + 30.995832999999998
-      }*/
     })),
     toggleLayer: (layerIndex, visible) => {
       store.dispatch({
