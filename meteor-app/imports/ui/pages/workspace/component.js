@@ -220,7 +220,8 @@ export default class Page_Workspace extends React.Component {
     return (
       <div className="page--workspace">
         <div className="welcome_info">
-            <label>Hello!</label>
+            <h1>Model Run Metadata</h1>
+            <p>This is the metadata of the layers.</p>
         </div>
         <fieldset>
           <legend>Filters</legend>
