@@ -219,12 +219,15 @@ export default class Page_Workspace extends React.Component {
 
     return (
       <div className="page--workspace">
+        
         <div className="welcome_frame">
-            <div className="welcome_info">
-                <h3>Model Run Metadata</h3>
-                <p>This is the metadata of the layers.</p>
-            </div>
         </div>
+        
+        <div className="welcome_info">
+            <h3>Model Run Metadata</h3>
+            <p>This is the metadata of the layers.</p>
+        </div>
+        
         <fieldset>
           <legend>Filters</legend>
           <div className="section_filter">
