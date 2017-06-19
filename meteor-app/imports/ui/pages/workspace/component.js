@@ -225,6 +225,7 @@ export default class Page_Workspace extends React.Component {
         
         <div className="welcome_info">
             <h3>Model Run Metadata</h3>
+            <button>Close</button>
             <p>This is the metadata of the layers.</p>
         </div>
         
