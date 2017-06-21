@@ -101,7 +101,7 @@ export default createContainer((props) => {
       
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
-        welcomeWindowClosed = true;
+        welcomeWindowClosed: true,
     },
   };
 }, Component);
