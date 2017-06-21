@@ -29,6 +29,8 @@ export default createContainer((props) => {
       filterMin,
       filterMax,
       filterValue,
+        
+      welcomeWindowClosed,
     },
   } = store.getState();
 
@@ -96,5 +98,10 @@ export default createContainer((props) => {
     filterValue,
     rangeMin,
     rangeMax,
+      
+    welcomeWindowClosed,
+    closeWelcomeWindow: () => {
+        welcomeWindowClosed = true;
+    },
   };
 }, Component);

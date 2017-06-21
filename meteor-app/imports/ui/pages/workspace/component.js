@@ -37,6 +37,9 @@ export default class Page_Workspace extends React.Component {
     updateFilterValue: PropTypes.func.isRequired,
     updateFilterMin: PropTypes.func.isRequired,
     updateFilterMax: PropTypes.func.isRequired,
+      
+    welcomeWindowClosed: PropTypes.bool.isRequired,
+    closeWelcomeWindow: PropTypes.func.isRequired,
   };
 
   componentDidMount () {
@@ -60,6 +63,8 @@ export default class Page_Workspace extends React.Component {
     this._bound_layerVisibilityOnChange = this._layerVisibilityOnChange.bind(this);
     this._bound_layerOpacityOnChange = this._layerOpacityOnChange.bind(this);
     this._bound_mapOnClick = this._mapOnClick.bind(this);
+      
+    this._bound_closeWelcomeWindow = this._closeWelcomeWindow(this);
   }
 
   _rangeFilterOnChange (event) {
@@ -200,6 +205,14 @@ export default class Page_Workspace extends React.Component {
     selectInspectPoint(event.latLongCoordinate);
   }
 
+  _closeWelcomeWindow(event) {
+      const {
+          closeWelcomeWindow,
+      } = this.props;
+      
+      closeWelcomeWindow();
+  }
+
   render () {
     const {
       layers,
@@ -215,18 +228,22 @@ export default class Page_Workspace extends React.Component {
       filterValue,
       rangeMin,
       rangeMax,
+        
+      welcomeWindowClosed,
     } = this.props;
 
     return (
       <div className="page--workspace">
         
-        <div className="welcome_frame">
-        </div>
+        <div className="welcome_frame" invisible={!welcomeWindowClosed ? "invisible" : null}>
+            <div className="welcome_background">
+            </div>
         
-        <div className="welcome_info">
-            <h3>Model Run Metadata</h3>
-            <button>Close</button>
-            <p>This is the metadata of the layers.</p>
+            <div className="welcome_info">
+                <h3>Model Run Metadata</h3>
+                <button onClick={this._bound_closeWelcomeWindow}>Close</button>
+                <p>This is the metadata of the layers.</p>
+            </div>
         </div>
         
         <fieldset>
