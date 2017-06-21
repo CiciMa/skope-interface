@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 import {
   SearchkitManager,
   SearchkitProvider,
@@ -95,7 +96,7 @@ export default class Page_Search extends React.Component {
 
   _searchButtonOnClick (event) {
     if (this.inputField_) {
-      const inputValue = this.inputField_.value;
+      const inputValue = this.inputField.value;
       const {
         updateSearchInput,
       } = this.props;
