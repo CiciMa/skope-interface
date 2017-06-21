@@ -18,8 +18,14 @@ import {
   SelectedFilters,
   ResetFilters,
   MovieHitsGridItem,
+  MovieHitsListItem,
+  Pagination,
+  InputFilter,
   Hits,
   NoHits,
+  Panel,
+  GroupedSelectedFilters,
+  ViewSwitcherHits,
 } from "searchkit";
 import "searchkit/release/theme.css";
 
@@ -32,21 +38,64 @@ const App = ()=> (
         <SearchBox
           autofocus={true}
           searchOnChange={true}
-          prefixQueryFields={["actors^1","type^2","languages","title^10"]}/>
+          prefixQueryFields={["actors^1","type^2","languages","title^10"]}
+          placeholder={"Keyword Search"}
+          />
       </TopBar>
+
       <LayoutBody>
         <SideBar>
-          <HierarchicalMenuFilter
-            fields={["type.raw", "genres.raw"]}
-            title="Categories"
-            id="categories"/>
+        <Panel title="Categories" collapsable={true} defaultCollapsed={false}>
+        <HierarchicalMenuFilter
+        fields={["type.raw", "genres.raw"]}
+    //  title="Categories"
+        id="categories"/>
+        </Panel>
+          <Panel title="Actors" collapsable={true} defaultCollapsed={false}>
           <RefinementListFilter
             id="actors"
-            title="Actors"
+            // title="Actors"
             field="actors.raw"
             operator="AND"
             size={10}/>
+            </Panel>
+            <Panel title="Countries" collapsable={true} defaultCollapsed={false}>
+            <RefinementListFilter
+            id="countries"
+            // title="Countries"
+            field="countries.raw"
+            operator="OR"
+            size={10}/>
+            </Panel>
+            <InputFilter
+            id="author_q"
+            title="Area of Interest"
+            placeholder="Search actors"
+            searchOnChange={true}
+            prefixQueryFields={["actors"]}
+            queryFields={["actors"]}
+            />
+            <InputFilter
+            id="author_q"
+            title="Time range"
+            placeholder="start date"
+            searchOnChange={true}
+            prefixQueryFields={["actors"]}
+            queryFields={["actors"]}
+            />
+            <InputFilter
+            id="author_q"
+            // title=""
+            placeholder="end date"
+            searchOnChange={true}
+            prefixQueryFields={["actors"]}
+            queryFields={["actors"]}
+            />
+            <Panel title="Selected filters" collapsable={true} defaultCollapsed={false}>
+            <GroupedSelectedFilters/>
+            </Panel>
         </SideBar>
+
         <LayoutResults>
           <ActionBar>
 
@@ -60,11 +109,23 @@ const App = ()=> (
             </ActionBarRow>
 
           </ActionBar>
-          <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
-            sourceFilter={["title", "poster", "imdbId"]}/>
+
+          <ViewSwitcherHits
+    hitsPerPage={12} highlightFields={["title","plot"]}
+    sourceFilter={["plot", "title", "poster", "imdbId", "imdbRating", "year"]}
+    hitComponents = {[
+      {key:"grid", title:"Grid", itemComponent:MovieHitsGridItem, defaultOption:true},
+      {key:"list", title:"List", itemComponent:MovieHitsListItem}
+    ]}
+    scrollTo="body"
+/>
+
+          <Hits mod="sk-hits-list" hitsPerPage={3} itemComponent={MovieHitsListItem} sourceFilter={["title", "poster", "imdbId"]}/>
           <NoHits/>
+          <Pagination showNumbers={true}/>
         </LayoutResults>
       </LayoutBody>
+
     </Layout>
   </SearchkitProvider>
 );
