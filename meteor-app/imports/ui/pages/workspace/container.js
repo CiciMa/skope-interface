@@ -100,8 +100,8 @@ export default createContainer((props) => {
     rangeMax,
       
     welcomeWindowClosed,
-    closeWelcomeWindow: () => {
+    closeWelcomeWindow: () => ({
         welcomeWindowClosed: true,
-    },
+    }),
   };
 }, Component);
