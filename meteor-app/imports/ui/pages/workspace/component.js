@@ -235,7 +235,7 @@ export default class Page_Workspace extends React.Component {
     return (
       <div className="page--workspace">
         
-        <div className="welcome_frame" invisible={!welcomeWindowClosed ? "invisible" : null}>
+        <div className="welcome_frame" display={!welcomeWindowClosed ? "none" : "block"}>
             <div className="welcome_background">
             </div>
         
