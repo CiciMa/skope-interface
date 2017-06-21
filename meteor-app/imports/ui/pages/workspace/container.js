@@ -102,6 +102,7 @@ export default createContainer((props) => {
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
         store.dispatch({
+            type: actions.WORKSPACE_INSPECT_POINT.type,
             welcomeWindowClosed: true,
         });
     },
