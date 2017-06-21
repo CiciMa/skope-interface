@@ -252,7 +252,7 @@ export default class Page_Workspace extends React.Component {
                 <h3>Model Run Metadata</h3>
                 <button onClick={this._bound_closeWelcomeWindow}>Close</button>
                 <p>This is the metadata of the layers.</p>
-                <p>{welcomeWindowClosed}</p>
+                <p>{welcomeWindowClosed ? "true" : "false"}</p>
             </div>
         </div>
         
