@@ -103,6 +103,8 @@ export default createContainer((props) => {
     closeWelcomeWindow: () => {
         store.dispatch({
             type: actions.WORKSPACE_INSPECT_POINT.type,
+            selected: false,
+            coordinate: [0, 0],
             welcomeWindowClosed: true,
         });
     },
