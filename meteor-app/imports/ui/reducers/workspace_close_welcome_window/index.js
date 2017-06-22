@@ -1,6 +1,6 @@
 export const WORKSPACE_CLOSE_WELCOME_WINDOW = (state, action) => {
   const {
-    welcomeWindowClosed,
+    value,
   } = action;
     
   return {
@@ -9,7 +9,7 @@ export const WORKSPACE_CLOSE_WELCOME_WINDOW = (state, action) => {
     workspace: {
       ...state.workspace,
 
-      welcomeWindowClosed: !welcomeWindowClosed,
+      welcomeWindowClosed: !value,
     },
   };
 };
