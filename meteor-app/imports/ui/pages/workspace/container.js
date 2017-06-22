@@ -12,8 +12,7 @@ import * as actions from "/imports/ui/actions";
 
 function closeWelcomeWindowUpdateStatus {
   return {
-    type: 'ADD_TODO',
-    text
+    welcomeWindowClosed: true
   }
 }
 
@@ -108,9 +107,7 @@ export default createContainer((props) => {
       
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
-        store.dispatch(
-            () => ({return {welcomeWindowClosed: true}})
-        );
+        store.dispatch(closeWelcomeWindowUpdateStatus);
     },
   };
 }, Component);
