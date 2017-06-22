@@ -10,7 +10,7 @@ import {
 
 import * as actions from "/imports/ui/actions";
 
-function closeWelcomeWindowUpdateStatus {
+function closeWelcomeWindowUpdateStatus() {
   return {
     welcomeWindowClosed: true
   }
