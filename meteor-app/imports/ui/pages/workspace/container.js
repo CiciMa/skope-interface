@@ -108,9 +108,9 @@ export default createContainer((props) => {
       
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
-        store.dispatch({
-            () => {return {welcomeWindowClosed: true}}
-        });
+        store.dispatch(
+            () => ({return {welcomeWindowClosed: true}})
+        );
     },
   };
 }, Component);
