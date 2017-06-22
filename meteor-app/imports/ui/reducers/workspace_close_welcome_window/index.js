@@ -9,7 +9,7 @@ export const WORKSPACE_CLOSE_WELCOME_WINDOW = (state, action) => {
     workspace: {
       ...state.workspace,
 
-      welcomeWindowClosed: true,
+      welcomeWindowClosed: !welcomeWindowClosed,
     },
   };
 };
