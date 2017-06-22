@@ -10,6 +10,13 @@ import {
 
 import * as actions from "/imports/ui/actions";
 
+function closeWelcomeWindowUpdateStatus {
+  return {
+    type: 'ADD_TODO',
+    text
+  }
+}
+
 export default createContainer((props) => {
   // props here will have `main`, passed from the router
   // anything we return from this function will be *added* to it.
@@ -102,7 +109,7 @@ export default createContainer((props) => {
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
         store.dispatch({
-            () => {return {welcomeWindowClosed = true}}
+            () => {return {welcomeWindowClosed: true}}
         });
     },
   };
