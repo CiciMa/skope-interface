@@ -107,7 +107,9 @@ export default createContainer((props) => {
       
     welcomeWindowClosed,
     closeWelcomeWindow: () => {
-        store.dispatch(closeWelcomeWindowUpdateStatus);
+        store.dispatch({
+          type: actions.WORKSPACE_CLOSE_WELCOME_WINDOW.type,
+        });
     },
   };
 }, Component);
