@@ -10,12 +10,6 @@ import {
 
 import * as actions from "/imports/ui/actions";
 
-function closeWelcomeWindowUpdateStatus() {
-  return {
-    welcomeWindowClosed: true
-  }
-}
-
 export default createContainer((props) => {
   // props here will have `main`, passed from the router
   // anything we return from this function will be *added* to it.
@@ -106,10 +100,10 @@ export default createContainer((props) => {
     rangeMax,
       
     welcomeWindowClosed,
-    closeWelcomeWindow: () => {
+    closeWelcomeWindow: (welcomeWindowClosed) => {
         store.dispatch({
           type: actions.WORKSPACE_CLOSE_WELCOME_WINDOW.type,
-          welcomeWindowClosed: true,
+          welcomeWindowClosed,
         });
     },
   };

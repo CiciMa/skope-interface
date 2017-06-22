@@ -219,7 +219,7 @@ export default class Page_Workspace extends React.Component {
           closeWelcomeWindow,
       } = this.props;
       
-      closeWelcomeWindow();
+      closeWelcomeWindow(true);
   }
 
   render () {
