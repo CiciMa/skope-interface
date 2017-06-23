@@ -277,7 +277,8 @@ export default class Page_Workspace extends React.Component {
                 value={filterValue}
                 onChange={this._bound_rangeFilterOnChange}
               />
-              <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+              //<button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+              <button onClick={this._bound_closeWelcomeWindow}>&lt;</button>
               <label>{filterValue}</label>
               <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
             </div>
