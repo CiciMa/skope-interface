@@ -75,7 +75,7 @@ export default class Page_Workspace extends React.Component {
     this._bound_layerOpacityOnChange = this._layerOpacityOnChange.bind(this);
     this._bound_mapOnClick = this._mapOnClick.bind(this);
       
-    this._bound_closeWelcomeWindow = this._closeWelcomeWindow(this);
+    this._bound_closeWelcomeWindow = this._closeWelcomeWindow.bind(this);
   }
 
   _rangeFilterOnChange (event) {
@@ -256,7 +256,7 @@ export default class Page_Workspace extends React.Component {
         
             <div className="welcome_info">
                 <h3>Model Run Metadata</h3>
-                <button onClick={this._bound_yearStepBackButtonOnClick}>Close</button>
+                <button onClick={this._bound_closeWelcomeWindow}>Close</button>
                 <p>This is the metadata of the layers.</p>
                 <p>{welcomeWindowClosed ? "true" : "false"}</p>
                 <p>{x ? "true" : "false"}</p>
