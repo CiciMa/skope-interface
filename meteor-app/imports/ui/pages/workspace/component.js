@@ -11,6 +11,8 @@ const welcomeWindowStyle = {
     },
 };
 
+var x = false;
+
 export default class Page_Workspace extends React.Component {
 
   static propTypes = {
@@ -221,6 +223,8 @@ export default class Page_Workspace extends React.Component {
       } = this.props;
       
       closeWelcomeWindow(!welcomeWindowClosed);
+      toggleLayer(0, false);
+      x = true;
   }
 
   render () {
