@@ -211,6 +211,7 @@ export default class Page_Workspace extends React.Component {
       selectInspectPoint,
     } = this.props;
 
+    console.log(event.latLongCoordinate);
     selectInspectPoint(event.latLongCoordinate);
   }
 
