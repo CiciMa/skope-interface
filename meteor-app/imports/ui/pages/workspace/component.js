@@ -220,11 +220,9 @@ export default class Page_Workspace extends React.Component {
       const {
           closeWelcomeWindow,
           welcomeWindowClosed,
-          toggleLayer,
       } = this.props;
       
       closeWelcomeWindow(!welcomeWindowClosed);
-      toggleLayer(0, false);
       x = !x;
   }
 
