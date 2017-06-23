@@ -11,8 +11,6 @@ const welcomeWindowStyle = {
     },
 };
 
-var x = false;
-
 export default class Page_Workspace extends React.Component {
 
   static propTypes = {
@@ -223,7 +221,6 @@ export default class Page_Workspace extends React.Component {
       } = this.props;
       
       closeWelcomeWindow(!welcomeWindowClosed);
-      x = !x;
   }
 
   render () {
@@ -248,7 +245,7 @@ export default class Page_Workspace extends React.Component {
     return (
       <div className="page--workspace">
         
-        <div className="welcome_frame" style={x ? welcomeWindowStyle.hidden : welcomeWindowStyle.visible}>
+        <div className="welcome_frame" style={welcomeWindowClosed ? welcomeWindowStyle.hidden : welcomeWindowStyle.visible}>
             <div className="welcome_background">
             </div>
         
@@ -256,8 +253,6 @@ export default class Page_Workspace extends React.Component {
                 <h3>Model Run Metadata</h3>
                 <button onClick={this._bound_closeWelcomeWindow}>Close</button>
                 <p>This is the metadata of the layers.</p>
-                <p>{welcomeWindowClosed ? "true" : "false"}</p>
-                <p>{x ? "true" : "false"}</p>
             </div>
         </div>
         
