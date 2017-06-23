@@ -395,7 +395,7 @@ export default class Page_Workspace extends React.Component {
                               data={{
                                 datasets: [
                                   {
-                                    "aaa",
+                                    label,
                                     lineTension: 0,
                                     pointRadius: 0,
                                     backgroundColor: 'rgba(255,99,132,0.2)',
