@@ -225,7 +225,7 @@ export default class Page_Workspace extends React.Component {
       
       closeWelcomeWindow(!welcomeWindowClosed);
       toggleLayer(0, false);
-      x = true;
+      x = !x;
   }
 
   render () {
@@ -259,6 +259,7 @@ export default class Page_Workspace extends React.Component {
                 <button onClick={this._bound_closeWelcomeWindow}>Close</button>
                 <p>This is the metadata of the layers.</p>
                 <p>{welcomeWindowClosed ? "true" : "false"}</p>
+                <p>{x ? "true" : "false"}</p>
             </div>
         </div>
         
