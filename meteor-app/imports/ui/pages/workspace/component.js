@@ -259,6 +259,7 @@ export default class Page_Workspace extends React.Component {
         
         <fieldset>
           <legend>Filters</legend>
+          <button onClick={this._bound_yearStepBackButtonOnClick}></button>
           <div className="section_filter">
             <div className="filter-row">
               <label>Year: </label>
