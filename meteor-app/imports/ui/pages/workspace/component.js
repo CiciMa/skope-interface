@@ -2,15 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Line } from "react-chartjs-2";
 
-const welcomeWindowStyle = {
-    visible: {
-        display: 'block'
-    },
-    hidden: {
-        display: 'none'
-    },
-};
-
 export default class Page_Workspace extends React.Component {
 
   static propTypes = {
@@ -255,16 +246,18 @@ export default class Page_Workspace extends React.Component {
     return (
       <div className="page--workspace">
         
-        <div className="welcome_frame" style={welcomeWindowClosed ? welcomeWindowStyle.hidden : welcomeWindowStyle.visible}>
-            <div className="welcome_background">
+        {welcomeWindowClosed ? (
+            <div className="welcome_frame">
+                <div className="welcome_background">
+                </div>
+
+                <div className="welcome_info">
+                    <h3>Model Run Metadata</h3>
+                    <button onClick={this._bound_closeWelcomeWindow}>Close</button>
+                    <p>This is the metadata of the layers.</p>
+                </div>
             </div>
-        
-            <div className="welcome_info">
-                <h3>Model Run Metadata</h3>
-                <button onClick={this._bound_closeWelcomeWindow}>Close</button>
-                <p>This is the metadata of the layers.</p>
-            </div>
-        </div>
+        )}
         
         <fieldset>
           <legend>Filters</legend>
