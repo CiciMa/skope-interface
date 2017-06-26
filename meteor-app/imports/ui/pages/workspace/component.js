@@ -257,7 +257,7 @@ export default class Page_Workspace extends React.Component {
                     <p>This is the metadata of the layers.</p>
                 </div>
             </div>
-        ) : ()}
+        ) : null}
         
         <fieldset>
           <legend>Filters</legend>
