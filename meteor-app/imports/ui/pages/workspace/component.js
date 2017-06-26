@@ -217,10 +217,10 @@ export default class Page_Workspace extends React.Component {
 
   _toggleMenu(event) {
       const {
-          //toggleMenu,
+          toggleMenu,
       } = this.props;
       
-      //toggleMenu(menuShown);
+      toggleMenu(menuShown);
   }
 
   render () {
