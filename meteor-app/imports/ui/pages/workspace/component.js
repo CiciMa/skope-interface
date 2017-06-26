@@ -305,11 +305,6 @@ export default class Page_Workspace extends React.Component {
               <label>{filterMax}</label>
               <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
             </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Map</legend>
-          <div className="section_map">
             <ul className="layer-list">
               {layers.map((layer, layerIndex) => (
                 <li key={layerIndex}>
@@ -325,6 +320,12 @@ export default class Page_Workspace extends React.Component {
                 </li>
               ))}
             </ul>
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Map</legend>
+          <div className="section_map">
             <map-view
               class="the-map"
               basemap="osm"
