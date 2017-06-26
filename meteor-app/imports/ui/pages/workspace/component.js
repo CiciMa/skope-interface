@@ -246,7 +246,7 @@ export default class Page_Workspace extends React.Component {
     return (
       <div className="page--workspace">
         
-        {welcomeWindowClosed ? (
+        {!welcomeWindowClosed ? (
             <div className="welcome_frame">
                 <div className="welcome_background">
                 </div>
