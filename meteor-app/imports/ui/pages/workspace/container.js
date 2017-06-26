@@ -100,10 +100,9 @@ export default createContainer((props) => {
     rangeMax,
       
     welcomeWindowClosed,
-    closeWelcomeWindow: (welcomeWindowClosed) => {
+    closeWelcomeWindow: () => {
         store.dispatch({
           type: actions.WORKSPACE_CLOSE_WELCOME_WINDOW.type,
-          value: welcomeWindowClosed,
         });
     },
   };
