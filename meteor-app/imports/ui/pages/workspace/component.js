@@ -74,6 +74,7 @@ export default class Page_Workspace extends React.Component {
     this._bound_mapOnClick = this._mapOnClick.bind(this);
       
     this._bound_closeWelcomeWindow = this._closeWelcomeWindow.bind(this);
+    this._bound_toggleMenu = this._toggleMenu.bind(this);
   }
 
   _rangeFilterOnChange (event) {
@@ -224,6 +225,14 @@ export default class Page_Workspace extends React.Component {
       closeWelcomeWindow(!welcomeWindowClosed);
   }
 
+  _toggleMenu(event) {
+      const {
+          //toggleMenu,
+      } = this.props;
+      
+      //toggleMenu(menuShown);
+  }
+
   render () {
     const {
       layers,
@@ -241,6 +250,7 @@ export default class Page_Workspace extends React.Component {
       rangeMax,
         
       welcomeWindowClosed,
+      menuShown,
     } = this.props;
 
     return (
@@ -259,7 +269,7 @@ export default class Page_Workspace extends React.Component {
         
         <fieldset>
           <legend>Filters</legend>
-          <button onClick={this._bound_yearStepBackButtonOnClick}></button>
+          <button onClick={this._bound_toggleMenu}>{menuShown ? "Hide" : "Show"}</button>
           <div className="section_filter">
             <div className="filter-row">
               <label>Year: </label>
