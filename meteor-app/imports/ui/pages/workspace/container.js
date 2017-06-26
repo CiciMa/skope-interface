@@ -29,6 +29,9 @@ export default createContainer((props) => {
       filterMin,
       filterMax,
       filterValue,
+        
+      welcomeWindowClosed,
+      menuShown,
     },
   } = store.getState();
 
@@ -97,9 +100,18 @@ export default createContainer((props) => {
     rangeMin,
     rangeMax,
       
+    welcomeWindowClosed,
     closeWelcomeWindow: () => {
         store.dispatch({
           type: actions.WORKSPACE_CLOSE_WELCOME_WINDOW.type,
+        });
+    },
+      
+    menuShown,
+    toggleMenu: (menuShown) => {
+        store.dispatch({
+          type: actions.WORKSPACE_TOGGLE_MENU.type,
+          value: menuShown,
         });
     },
   };
