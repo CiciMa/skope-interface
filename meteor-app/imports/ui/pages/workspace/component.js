@@ -261,7 +261,6 @@ export default class Page_Workspace extends React.Component {
         ) : null}
         
         <fieldset>
-          <legend>Filters</legend>
           <button onClick={this._bound_toggleMenu}>{menuShown ? "Hide" : "Show"}</button>
           {menuShown ? (
               <div className="section_filter">
@@ -330,7 +329,6 @@ export default class Page_Workspace extends React.Component {
         </fieldset>
         
         <fieldset>
-          <legend>Map</legend>
           <div className="section_map">
             <map-view
               class="the-map"
