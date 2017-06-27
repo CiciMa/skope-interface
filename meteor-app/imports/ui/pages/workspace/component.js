@@ -349,7 +349,7 @@ export default class Page_Workspace extends React.Component {
                       ></map-layer-twms>
                       {!layer.nextUrl ? null : (
                         <map-layer-xyz
-                          name={`${layer.name} (preload)`}
+                          name={${layer.name} (preload)}
                           url={layer.nextUrl}
                           min-zoom={layer.minZoom}
                           max-zoom={layer.maxZoom}
