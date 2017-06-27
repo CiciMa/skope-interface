@@ -9,7 +9,7 @@ export const WORKSPACE_TOGGLE_MENU = (state, action) => {
     workspace: {
       ...state.workspace,
 
-      welcomeWindowClosed: !value,
+      welcomeWindowClosed: true,
     },
   };
 };
