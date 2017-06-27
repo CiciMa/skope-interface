@@ -46,5 +46,6 @@ export default {
     filterMax: null,
       
     welcomeWindowClosed: false,
+    menuShown: false,
   },
 };
