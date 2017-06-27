@@ -21,7 +21,7 @@ export default class Layout_Main extends React.Component {
           {body}
         </div>
         <div className="page__footer">
-          <p><a href={demo_repository} target="_blank">Source code on Github</a></p>
+          <a href={demo_repository} target="_blank">Source code on Github</a>
         </div>
       </div>
     );
