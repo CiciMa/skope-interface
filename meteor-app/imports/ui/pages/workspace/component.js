@@ -260,125 +260,127 @@ export default class Page_Workspace extends React.Component {
             </div>
         ) : null}
         
-        <fieldset>
-          <button onClick={this._bound_toggleMenu}>{menuShown ? "Hide" : "Show"}</button>
-          {menuShown ? (
-              <div className="section_filter">
-                <div className="filter-row">
-                  <label>Year: </label>
-                  <input
-                    className="layout_fill"
-                    type="range"
-                    min={filterMin}
-                    max={filterMax}
-                    step="1"
-                    value={filterValue}
-                    onChange={this._bound_rangeFilterOnChange}
-                  />
-                  <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
-                  <label>{filterValue}</label>
-                  <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
-                </div>
-                <div className="filter-min">
-                  <label>Min: </label>
-                  <input
-                    className="layout_fill"
-                    type="range"
-                    min={rangeMin}
-                    max={filterMax}
-                    step="1"
-                    value={filterMin}
-                    onChange={this._bound_rangeFilterMinOnChange}
-                  />
-                  <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
-                  <label>{filterMin}</label>
-                  <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
-                </div>
-                <div className="filter-max">
-                  <label>Max: </label>
-                  <input
-                    className="layout_fill"
-                    type="range"
-                    min={filterMin}
-                    max={rangeMax}
-                    step="1"
-                    value={filterMax}
-                    onChange={this._bound_rangeFilterMaxOnChange}
-                  />
-                  <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
-                  <label>{filterMax}</label>
-                  <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
-                </div>
-                <ul className="layer-list">
-                  {layers.map((layer, layerIndex) => (
-                    <li key={layerIndex}>
-                      <div>
-                        <input title="Toggle Visibility" type="checkbox" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
-                        <label>{layer.name}</label>
-                      </div>
-                      <div>
-                        <label>Opacity: </label>
-                        <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
-                        <label>{layer.opacity.toFixed(2)}</label>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-          ) : null}
-        </fieldset>
-        
-        <fieldset>
-          <div className="section_map">
-            <map-view
-              class="the-map"
-              basemap="osm"
-              center="-12107625, 4495720"
-              zoom="5"
-              ref={(ref) => this._mapview = ref}
-            >
+        <div className="section_explore">
+            <fieldset>
+              <button onClick={this._bound_toggleMenu}>{menuShown ? "Hide" : "Show"}</button>
+              {menuShown ? (
+                  <div className="section_filter">
+                    <div className="filter-row">
+                      <label>Year: </label>
+                      <input
+                        className="layout_fill"
+                        type="range"
+                        min={filterMin}
+                        max={filterMax}
+                        step="1"
+                        value={filterValue}
+                        onChange={this._bound_rangeFilterOnChange}
+                      />
+                      <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+                      <label>{filterValue}</label>
+                      <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
+                    </div>
+                    <div className="filter-min">
+                      <label>Min: </label>
+                      <input
+                        className="layout_fill"
+                        type="range"
+                        min={rangeMin}
+                        max={filterMax}
+                        step="1"
+                        value={filterMin}
+                        onChange={this._bound_rangeFilterMinOnChange}
+                      />
+                      <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
+                      <label>{filterMin}</label>
+                      <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
+                    </div>
+                    <div className="filter-max">
+                      <label>Max: </label>
+                      <input
+                        className="layout_fill"
+                        type="range"
+                        min={filterMin}
+                        max={rangeMax}
+                        step="1"
+                        value={filterMax}
+                        onChange={this._bound_rangeFilterMaxOnChange}
+                      />
+                      <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
+                      <label>{filterMax}</label>
+                      <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
+                    </div>
+                    <ul className="layer-list">
+                      {layers.map((layer, layerIndex) => (
+                        <li key={layerIndex}>
+                          <div>
+                            <input title="Toggle Visibility" type="checkbox" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
+                            <label>{layer.name}</label>
+                          </div>
+                          <div>
+                            <label>Opacity: </label>
+                            <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
+                            <label>{layer.opacity.toFixed(2)}</label>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+              ) : null}
+            </fieldset>
 
-              {layers.map((layer, layerIndex) => (
-                <map-layer-group
-                  key={layerIndex}
+            <fieldset>
+              <div className="section_map">
+                <map-view
+                  class="the-map"
+                  basemap="osm"
+                  center="-12107625, 4495720"
+                  zoom="5"
+                  ref={(ref) => this._mapview = ref}
                 >
-                  <map-layer-twms
-                    url={layer.url}
-                    min-zoom={layer.minZoom}
-                    max-zoom={layer.maxZoom}
-                    invisible={layer.invisible ? "invisible" : null}
-                    opacity={layer.opacity}
-                    extent={layer.extent}
-                    params={"LAYERS=" + layer.name + filterValue + "&TILED=true"}
-                    server-type="geoserver"
-                  ></map-layer-twms>
-                  {!layer.nextUrl ? null : (
-                    <map-layer-xyz
-                      name={`${layer.name} (preload)`}
-                      url={layer.nextUrl}
-                      min-zoom={layer.minZoom}
-                      max-zoom={layer.maxZoom}
-                      opacity="0"
-                      extent={layer.extent}
-                    ></map-layer-xyz>
-                  )}
-                </map-layer-group>
-              ))}
 
-              <map-layer-singlepoint
-                invisible={!inspectPointSelected ? "invisible" : null}
-                latitude={inspectPointCoordinate[1]}
-                longitude={inspectPointCoordinate[0]}
-              ></map-layer-singlepoint>
+                  {layers.map((layer, layerIndex) => (
+                    <map-layer-group
+                      key={layerIndex}
+                    >
+                      <map-layer-twms
+                        url={layer.url}
+                        min-zoom={layer.minZoom}
+                        max-zoom={layer.maxZoom}
+                        invisible={layer.invisible ? "invisible" : null}
+                        opacity={layer.opacity}
+                        extent={layer.extent}
+                        params={"LAYERS=" + layer.name + filterValue + "&TILED=true"}
+                        server-type="geoserver"
+                      ></map-layer-twms>
+                      {!layer.nextUrl ? null : (
+                        <map-layer-xyz
+                          name={`${layer.name} (preload)`}
+                          url={layer.nextUrl}
+                          min-zoom={layer.minZoom}
+                          max-zoom={layer.maxZoom}
+                          opacity="0"
+                          extent={layer.extent}
+                        ></map-layer-xyz>
+                      )}
+                    </map-layer-group>
+                  ))}
 
-              <map-control-defaults></map-control-defaults>
-              <map-interaction-defaults></map-interaction-defaults>
-              <map-control-simple-layer-list></map-control-simple-layer-list>
-            </map-view>
-          </div>
-        </fieldset>
+                  <map-layer-singlepoint
+                    invisible={!inspectPointSelected ? "invisible" : null}
+                    latitude={inspectPointCoordinate[1]}
+                    longitude={inspectPointCoordinate[0]}
+                  ></map-layer-singlepoint>
+
+                  <map-control-defaults></map-control-defaults>
+                  <map-interaction-defaults></map-interaction-defaults>
+                  <map-control-simple-layer-list></map-control-simple-layer-list>
+                </map-view>
+              </div>
+            </fieldset>
+        </div>
+
         <fieldset>
-          <legend>Charts</legend>
           <div className="section_charts">
             {
               !inspectPointSelected
