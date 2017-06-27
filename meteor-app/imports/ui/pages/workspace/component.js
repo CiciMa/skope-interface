@@ -372,7 +372,7 @@ export default class Page_Workspace extends React.Component {
                 </map-view>
               </div>
 
-            <div className="section_charts">
+          <div className="section_charts">
             {
               !inspectPointSelected
               ? <span>Choose a point on the map to view the corresponding charts</span>
@@ -443,6 +443,7 @@ export default class Page_Workspace extends React.Component {
             }
           </div>
         </div>
+      </div>
     );
   }
 }
