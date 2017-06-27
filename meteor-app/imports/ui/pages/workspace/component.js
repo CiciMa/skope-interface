@@ -259,77 +259,72 @@ export default class Page_Workspace extends React.Component {
                 </div>
             </div>
         ) : null}
+
+      <div className="section_filter">
+        <div className="filter-row">
+          <label>Year: </label>
+          <input
+            className="layout_fill"
+            type="range"
+            min={filterMin}
+            max={filterMax}
+            step="1"
+            value={filterValue}
+            onChange={this._bound_rangeFilterOnChange}
+          />
+          <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
+          <label>{filterValue}</label>
+          <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
+        </div>
+        <div className="filter-min">
+          <label>Min: </label>
+          <input
+            className="layout_fill"
+            type="range"
+            min={rangeMin}
+            max={filterMax}
+            step="1"
+            value={filterMin}
+            onChange={this._bound_rangeFilterMinOnChange}
+          />
+          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
+          <label>{filterMin}</label>
+          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
+        </div>
+        <div className="filter-max">
+          <label>Max: </label>
+          <input
+            className="layout_fill"
+            type="range"
+            min={filterMin}
+            max={rangeMax}
+            step="1"
+            value={filterMax}
+            onChange={this._bound_rangeFilterMaxOnChange}
+          />
+          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
+          <label>{filterMax}</label>
+          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
+        </div>
+        <ul className="layer-list">
+          {layers.map((layer, layerIndex) => (
+            <li key={layerIndex}>
+              <div>
+                <input title="Toggle Visibility" type="checkbox" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
+                <label>{layer.name}</label>
+              </div>
+              <div>
+                <label>Opacity: </label>
+                <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
+                <label>{layer.opacity.toFixed(2)}</label>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
         
         <div className="section_explore">
-            <fieldset>
-              <button onClick={this._bound_toggleMenu}>{menuShown ? "Hide" : "Show"}</button>
-              {menuShown ? (
-                  <div className="section_filter">
-                    <div className="filter-row">
-                      <label>Year: </label>
-                      <input
-                        className="layout_fill"
-                        type="range"
-                        min={filterMin}
-                        max={filterMax}
-                        step="1"
-                        value={filterValue}
-                        onChange={this._bound_rangeFilterOnChange}
-                      />
-                      <button onClick={this._bound_yearStepBackButtonOnClick}>&lt;</button>
-                      <label>{filterValue}</label>
-                      <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
-                    </div>
-                    <div className="filter-min">
-                      <label>Min: </label>
-                      <input
-                        className="layout_fill"
-                        type="range"
-                        min={rangeMin}
-                        max={filterMax}
-                        step="1"
-                        value={filterMin}
-                        onChange={this._bound_rangeFilterMinOnChange}
-                      />
-                      <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
-                      <label>{filterMin}</label>
-                      <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
-                    </div>
-                    <div className="filter-max">
-                      <label>Max: </label>
-                      <input
-                        className="layout_fill"
-                        type="range"
-                        min={filterMin}
-                        max={rangeMax}
-                        step="1"
-                        value={filterMax}
-                        onChange={this._bound_rangeFilterMaxOnChange}
-                      />
-                      <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
-                      <label>{filterMax}</label>
-                      <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
-                    </div>
-                    <ul className="layer-list">
-                      {layers.map((layer, layerIndex) => (
-                        <li key={layerIndex}>
-                          <div>
-                            <input title="Toggle Visibility" type="checkbox" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
-                            <label>{layer.name}</label>
-                          </div>
-                          <div>
-                            <label>Opacity: </label>
-                            <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
-                            <label>{layer.opacity.toFixed(2)}</label>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-              ) : null}
-            </fieldset>
-
-            <fieldset>
+            
               <div className="section_map">
                 <map-view
                   class="the-map"
@@ -338,7 +333,6 @@ export default class Page_Workspace extends React.Component {
                   zoom="5"
                   ref={(ref) => this._mapview = ref}
                 >
-
                   {layers.map((layer, layerIndex) => (
                     <map-layer-group
                       key={layerIndex}
@@ -377,11 +371,8 @@ export default class Page_Workspace extends React.Component {
                   <map-control-simple-layer-list></map-control-simple-layer-list>
                 </map-view>
               </div>
-            </fieldset>
-        </div>
 
-        <fieldset>
-          <div className="section_charts">
+            <div className="section_charts">
             {
               !inspectPointSelected
               ? <span>Choose a point on the map to view the corresponding charts</span>
@@ -451,8 +442,7 @@ export default class Page_Workspace extends React.Component {
                 )
             }
           </div>
-        </fieldset>
-      </div>
+        </div>
     );
   }
 }
