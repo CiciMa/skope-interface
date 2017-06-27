@@ -219,11 +219,8 @@ export default class Page_Workspace extends React.Component {
       const {
           toggleMenu,
           menuShown,
-          
-          updateFilterMax,
       } = this.props;
       
-      updateFilterMax(200);
       toggleMenu(menuShown);
   }
 
