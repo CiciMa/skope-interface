@@ -14,7 +14,7 @@ export default {
     //! For testing only. Should be empty on start.
     layers: [
       {
-        name: "	skope:GDD_",
+        name: "	skope:GDD_may_sept_demosaic",
         minZoom: 5,
         maxZoom: 12,
         invisible: false,
