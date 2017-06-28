@@ -342,7 +342,7 @@ export default class Page_Workspace extends React.Component {
                       </div>
                     )
                   : (
-                      <div>
+                      <div className="section_data">
                         <div className="section_range">
                             <div className="filter-min">
                               <label>Start: </label>
