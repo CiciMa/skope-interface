@@ -66,19 +66,30 @@
     }
   }
 
-  .section_map {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-    height: 500px;
+  .section_explore {
+      overflow: scroll;
+      height: 600px;
+      
+      .section_range {
+          padding: 10px;
+          width: 50%;
+          margin: auto;
+      }
+      
+      .section_map {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+        height: 500px;
 
-    .the-map {
-      flex: 1 1 0;
-      width: auto;
-      height: auto;
-    }
+        .the-map {
+          flex: 1 1 0;
+          width: auto;
+          height: auto;
+        }
+      }
   }
 }
