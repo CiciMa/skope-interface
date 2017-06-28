@@ -77,11 +77,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterValue,
     } = this.props;
 
-    if(target.value >= filterMin) {
-        updateFilterValue(target.value);
-    } else {
-        updateFilterValue(filterMin);
-    }
+    updateFilterValue(target.value);
   }
     
   _rangeFilterMinOnChange (event) {
@@ -93,11 +89,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMin,
     } = this.props;
 
-    if(target.value <= filterValue) {
-        updateFilterMin(target.value);
-    } else {
-        updateFilterMin(filterValue);
-    }
+    updateFilterMin(target.value);
   }
     
   _rangeFilterMaxOnChange (event) {
@@ -109,11 +101,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMax,
     } = this.props;
 
-    if(target.value >= filterValue) {
-        updateFilterMax(target.value);
-    } else {
-        updateFilterMax(filterValue);
-    }
+    updateFilterMax(target.value);
   }
 
   _layerVisibilityOnChange (event) {
