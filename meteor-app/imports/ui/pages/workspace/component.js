@@ -330,7 +330,7 @@ export default class Page_Workspace extends React.Component {
                 </map-view>
               </div>
 
-          <div>
+          <div className="section_data">
             {
               !inspectPointSelected
               ? <span>Choose a point on the map to view the corresponding charts</span>
@@ -342,7 +342,7 @@ export default class Page_Workspace extends React.Component {
                       </div>
                     )
                   : (
-                      <div className="section_data">
+                      <div>
                         <div className="section_range">
                             <div className="filter-min">
                               <label>Start: </label>
