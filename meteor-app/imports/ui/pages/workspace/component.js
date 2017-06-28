@@ -385,7 +385,7 @@ export default class Page_Workspace extends React.Component {
                           <label>{filterMax}</label>
                           <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
                         </div>
-                      </div>
+                      </div>,
 
                       <div>
                         {inspectPointData.map(({label, data}, dataIndex) => (
