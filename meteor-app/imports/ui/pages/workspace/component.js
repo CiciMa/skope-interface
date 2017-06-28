@@ -145,7 +145,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterValue,
     } = this.props;
 
-    updateFilterValue(Math.max(filterMin, filterValue - 1));
+    updateFilterValue(Math.max(rangeMin, filterValue - 1));
   }
 
   _yearStepForwardButtonOnClick (/*event*/) {
@@ -155,7 +155,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterValue,
     } = this.props;
 
-    updateFilterValue(Math.min(filterMax, filterValue + 1));
+    updateFilterValue(Math.min(rangeMax, filterValue + 1));
   }
     
   _yearMinStepBackButtonOnClick (/*event*/) {
@@ -175,7 +175,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMin,
     } = this.props;
 
-    updateFilterMin(Math.min(filterMin + 1, filterValue));
+    updateFilterMin(Math.min(filterMin + 1, filterMax));
   }
     
   _yearMaxStepBackButtonOnClick (/*event*/) {
@@ -185,7 +185,7 @@ export default class Page_Workspace extends React.Component {
       updateFilterMax,
     } = this.props;
 
-    updateFilterMax(Math.max(filterMax - 1, filterValue));
+    updateFilterMax(Math.max(filterMax - 1, filterMin));
   }
 
   _yearMaxStepForwardButtonOnClick (/*event*/) {
