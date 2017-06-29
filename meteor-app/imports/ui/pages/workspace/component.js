@@ -265,14 +265,15 @@ export default class Page_Workspace extends React.Component {
           <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
         </div>
         <ul className="layer-list">
+            <p>Layer list:</p>
           {layers.map((layer, layerIndex) => (
             <li key={layerIndex}>
               <div>
-                <input title="Toggle Visibility" type="checkbox" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
+                <input title="Toggle Visibility" type="radio" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
                 <label>{layer.name}</label>
               </div>
               <div>
-                <label>Opacity: </label>
+                <label>Opacity:</label>
                 <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
                 <label>{layer.opacity.toFixed(2)}</label>
               </div>
