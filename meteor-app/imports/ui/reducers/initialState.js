@@ -18,7 +18,7 @@ export default {
         minZoom: 5,
         maxZoom: 12,
         invisible: false,
-        opacity: 0.7,
+        opacity: 1.0,
         extent: "-12856096.661340367, 3620057.6595859504, -11359153.899403473, 5371382.851655904",
       },
       {
@@ -26,7 +26,7 @@ export default {
         minZoom: 5,
         maxZoom: 12,
         invisible: true,
-        opacity: 0.7,
+        opacity: 1.0,
         extent: "-12856096.661340367, 3620057.6595859504, -11359153.899403473, 5371382.851655904",
       },
       {
@@ -34,7 +34,7 @@ export default {
         minZoom: 5,
         maxZoom: 12,
         invisible: true,
-        opacity: 0.7,
+        opacity: 1.0,
         extent: "-12856096.661340367, 3620057.6595859504, -11359153.899403473, 5371382.851655904",
       },
     ],
