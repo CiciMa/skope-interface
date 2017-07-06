@@ -300,7 +300,7 @@ export default class Page_Workspace extends React.Component {
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
                     invisible={layer.invisible ? "invisible" : null}
-                    opacity={llayerOpacity}
+                    opacity={layerOpacity}
                     extent={layer.extent}
                     params={"LAYERS=" + layer.name + filterValue + "&TILED=true"}
                     server-type="geoserver"
