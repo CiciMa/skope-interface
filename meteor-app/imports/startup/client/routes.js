@@ -116,7 +116,7 @@ FlowRouter.route("/workspace", {
       value3: queryParams.filterMax,
     });
 
-    mount(Layout_Main, {
+    mount(Layout_FullWindow, {
       store,
       body: (
         <Page_Workspace {...{
