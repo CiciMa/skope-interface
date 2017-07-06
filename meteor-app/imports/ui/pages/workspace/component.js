@@ -281,6 +281,44 @@ export default class Page_Workspace extends React.Component {
             <label>{layerOpacity.toFixed(2)}</label>
           </div>
         </ul>
+
+        {
+                  inspectPointSelected
+                  ? (
+                    <div className="section_range">
+                        <div className="filter-min">
+                          <label>Start: </label>
+                          <input
+                            className="layout_fill"
+                            type="range"
+                            min={rangeMin}
+                            max={filterMax}
+                            step="1"
+                            value={filterMin}
+                            onChange={this._bound_rangeFilterMinOnChange}
+                          />
+                          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
+                          <label>{filterMin}</label>
+                          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
+                        </div>
+                        <div className="filter-max">
+                          <label>End: </label>
+                          <input
+                            className="layout_fill"
+                            type="range"
+                            min={filterMin}
+                            max={rangeMax}
+                            step="1"
+                            value={filterMax}
+                            onChange={this._bound_rangeFilterMaxOnChange}
+                          />
+                          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
+                          <label>{filterMax}</label>
+                          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
+                        </div>
+                    </div>
+                ) : null
+        }
       </div>
             
           <div className="section_map">
@@ -342,94 +380,60 @@ export default class Page_Workspace extends React.Component {
                   </div>
                 )
               : (
-                  <div>
-                    <div className="section_range">
-                        <div className="filter-min">
-                          <label>Start: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={rangeMin}
-                            max={filterMax}
-                            step="1"
-                            value={filterMin}
-                            onChange={this._bound_rangeFilterMinOnChange}
-                          />
-                          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMin}</label>
-                          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                        <div className="filter-max">
-                          <label>End: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={filterMin}
-                            max={rangeMax}
-                            step="1"
-                            value={filterMax}
-                            onChange={this._bound_rangeFilterMaxOnChange}
-                          />
-                          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMax}</label>
-                          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                    </div>
-                    <div className="section_charts">
-                        {inspectPointData.map(({label, data}, dataIndex) => (
-                          <div
-                            key={dataIndex}
-                            style={{height: "200px"}}
-                          >
-                            <Line
-                              data={{
-                                datasets: [
-                                  {
-                                    label,
-                                    lineTension: 0,
-                                    pointRadius: 0,
-                                    backgroundColor: 'rgba(255,99,132,0.2)',
-                                    borderColor: 'rgba(255,99,132,1)',
-                                    borderWidth: 1,
-                                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                                    hoverBorderColor: 'rgba(255,99,132,1)',
-                                    data,
+                <div className="section_charts">
+                    {inspectPointData.map(({label, data}, dataIndex) => (
+                      <div
+                        key={dataIndex}
+                        style={{height: "200px"}}
+                      >
+                        <Line
+                          data={{
+                            datasets: [
+                              {
+                                label,
+                                lineTension: 0,
+                                pointRadius: 0,
+                                backgroundColor: 'rgba(255,99,132,0.2)',
+                                borderColor: 'rgba(255,99,132,1)',
+                                borderWidth: 1,
+                                hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                                hoverBorderColor: 'rgba(255,99,132,1)',
+                                data,
+                              },
+                            ],
+                          }}
+                          options={{
+                            animation: {
+                              duration: 0,
+                            },
+                            maintainAspectRatio: false,
+                            tooltips: {
+                              enabled: true,
+                              mode: "nearest",
+                              intersect: false,
+                            },
+                            hover: {
+                              mode: "nearest",
+                              intersect: false,
+                              animationDuration: 0,
+                            },
+                            scales: {
+                              xAxes: [
+                                {
+                                  type: "linear",
+                                  position: "bottom",
+                                  ticks: {
+                                    autoSkip: true,
+                                    autoSkipPadding: 8,
                                   },
-                                ],
-                              }}
-                              options={{
-                                animation: {
-                                  duration: 0,
                                 },
-                                maintainAspectRatio: false,
-                                tooltips: {
-                                  enabled: true,
-                                  mode: "nearest",
-                                  intersect: false,
-                                },
-                                hover: {
-                                  mode: "nearest",
-                                  intersect: false,
-                                  animationDuration: 0,
-                                },
-                                scales: {
-                                  xAxes: [
-                                    {
-                                      type: "linear",
-                                      position: "bottom",
-                                      ticks: {
-                                        autoSkip: true,
-                                        autoSkipPadding: 8,
-                                      },
-                                    },
-                                  ],
-                                },
-                              }}
-                            />
-                          </div>
-                        ))}
+                              ],
+                            },
+                          }}
+                        />
                       </div>
-                    </div>
+                    ))}
+                  </div>
                 )
             )
         }
