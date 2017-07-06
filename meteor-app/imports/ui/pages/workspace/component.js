@@ -40,6 +40,7 @@ export default class Page_Workspace extends React.Component {
       
     welcomeWindowClosed: PropTypes.bool.isRequired,
     closeWelcomeWindow: PropTypes.func.isRequired,
+    layerOpacity: PropTypes.number.isRequired,
   };
 
   componentDidMount () {
@@ -229,6 +230,7 @@ export default class Page_Workspace extends React.Component {
         
       welcomeWindowClosed,
       menuShown,
+      layerOpacity,
     } = this.props;
 
     return (
@@ -275,8 +277,8 @@ export default class Page_Workspace extends React.Component {
           ))}
           <div>
             <label>Opacity:</label>
-            <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
-            <label>{layer.opacity.toFixed(2)}</label>
+            <input type="range" min="0" max="255" step="1" value={layerOpacity * 255} onChange={this._bound_layerOpacityOnChange} />
+            <label>{layerOpacity.toFixed(2)}</label>
           </div>
         </ul>
       </div>
@@ -298,7 +300,7 @@ export default class Page_Workspace extends React.Component {
                     min-zoom={layer.minZoom}
                     max-zoom={layer.maxZoom}
                     invisible={layer.invisible ? "invisible" : null}
-                    opacity={layer.opacity}
+                    opacity={llayerOpacity}
                     extent={layer.extent}
                     params={"LAYERS=" + layer.name + filterValue + "&TILED=true"}
                     server-type="geoserver"
@@ -309,7 +311,7 @@ export default class Page_Workspace extends React.Component {
                       url={layer.nextUrl}
                       min-zoom={layer.minZoom}
                       max-zoom={layer.maxZoom}
-                      opacity="0"
+                      opacity={layerOpacity}
                       extent={layer.extent}
                     ></map-layer-xyz>
                   )}
