@@ -49,10 +49,9 @@ export default createContainer((props) => {
         visible,
       });
     },
-    updateLayerOpacity: (layerIndex, opacity) => {
+    updateLayerOpacity: (opacity) => {
       store.dispatch({
         type: actions.WORKSPACE_CHANGE_LAYER_OPACITY.type,
-        index: layerIndex,
         opacity,
       });
     },

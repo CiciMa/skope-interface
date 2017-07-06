@@ -117,13 +117,12 @@ export default class Page_Workspace extends React.Component {
 
   _layerOpacityOnChange (event) {
     const target = event.currentTarget;
-    const layerIndex = parseInt(target.getAttribute("data-layer-index"));
     const opacity = target.value / 255;
     const {
       updateLayerOpacity,
     } = this.props;
 
-    updateLayerOpacity(layerIndex, opacity);
+    updateLayerOpacity(opacity);
   }
 
   _yearStepBackButtonOnClick (/*event*/) {
@@ -265,20 +264,20 @@ export default class Page_Workspace extends React.Component {
           <button onClick={this._bound_yearStepForwardButtonOnClick}>&gt;</button>
         </div>
         <ul className="layer-list">
-            <p>Layer list:</p>
+          <p>Layer list:</p>
           {layers.map((layer, layerIndex) => (
             <li key={layerIndex}>
               <div>
                 <input title="Toggle Visibility" type="radio" checked={!layer.invisible} data-layer-index={layerIndex} onChange={this._bound_layerVisibilityOnChange} />
                 <label>{layer.name}</label>
               </div>
-              <div>
-                <label>Opacity:</label>
-                <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
-                <label>{layer.opacity.toFixed(2)}</label>
-              </div>
             </li>
           ))}
+          <div>
+            <label>Opacity:</label>
+            <input type="range" min="0" max="255" step="1" value={layer.opacity * 255} data-layer-index={layerIndex} onChange={this._bound_layerOpacityOnChange} />
+            <label>{layer.opacity.toFixed(2)}</label>
+          </div>
         </ul>
       </div>
             
