@@ -32,6 +32,7 @@ export default createContainer((props) => {
         
       welcomeWindowClosed,
       menuShown,
+      layerOpacity,
     },
   } = store.getState();
 
@@ -49,6 +50,8 @@ export default createContainer((props) => {
         visible,
       });
     },
+      
+    layerOpacity,
     updateLayerOpacity: (opacity) => {
       store.dispatch({
         type: actions.WORKSPACE_CHANGE_LAYER_OPACITY.type,
@@ -110,7 +113,6 @@ export default createContainer((props) => {
     toggleMenu: (menuShown) => {
         store.dispatch({
           type: actions.WORKSPACE_TOGGLE_MENU.type,
-          value: menuShown,
         });
     },
   };

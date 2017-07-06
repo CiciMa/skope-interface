@@ -13,7 +13,7 @@ export const WORKSPACE_CHANGE_LAYER_OPACITY = (state, action) => {
     workspace: {
       ...state.workspace,
 
-      opacity,
+      layerOpacity: opacity,
     },
   };
 };
