@@ -15,8 +15,8 @@ export default class Layout_Main extends React.Component {
     return (
       <div className="page layout-main">
         <div className="page__header">
-          <p>Some header</p>
-          <Navbar store={store} />
+          <p>SKOPE</p>
+          <Navbar className="nav__bar" store={store} />
         </div>
         <div className="page__body">
           {body}

@@ -2,6 +2,4 @@
 
 import "./routes.js";
 import './index.css';
-import './bootstrap.css';
-import './bootstrap-theme.css';
 
