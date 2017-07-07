@@ -56,7 +56,7 @@
     }
     
   .section_filter {
-      display: -ms-inline-flexbox;
+    display: -ms-inline-flexbox;
     display: -webkit-inline-flex;
     display: inline-flex;
     -webkit-flex-direction: column;
@@ -74,6 +74,18 @@
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+      
+    * {
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+    }
       
     float: left;
     width: 250px;
