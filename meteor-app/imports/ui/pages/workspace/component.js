@@ -341,7 +341,7 @@ export default class Page_Workspace extends React.Component {
                   </div>
                 )
               : (
-                <div className="section_charts">
+                <div className="section_data">
 
                     <div className="section_range">
                         <div className="filter-min">
@@ -376,58 +376,60 @@ export default class Page_Workspace extends React.Component {
                         </div>
                     </div>
 
-                    {inspectPointData.map(({label, data}, dataIndex) => (
-                      <div
-                        key={dataIndex}
-                        style={{height: "200px"}}
-                      >
-                        <Line
-                          data={{
-                            datasets: [
-                              {
-                                label,
-                                lineTension: 0,
-                                pointRadius: 0,
-                                backgroundColor: 'rgba(255,99,132,0.2)',
-                                borderColor: 'rgba(255,99,132,1)',
-                                borderWidth: 1,
-                                hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                                hoverBorderColor: 'rgba(255,99,132,1)',
-                                data,
-                              },
-                            ],
-                          }}
-                          options={{
-                            animation: {
-                              duration: 0,
-                            },
-                            maintainAspectRatio: false,
-                            tooltips: {
-                              enabled: true,
-                              mode: "nearest",
-                              intersect: false,
-                            },
-                            hover: {
-                              mode: "nearest",
-                              intersect: false,
-                              animationDuration: 0,
-                            },
-                            scales: {
-                              xAxes: [
-                                {
-                                  type: "linear",
-                                  position: "bottom",
-                                  ticks: {
-                                    autoSkip: true,
-                                    autoSkipPadding: 8,
+                    <div className="section_charts">
+                        {inspectPointData.map(({label, data}, dataIndex) => (
+                          <div
+                            key={dataIndex}
+                            style={{height: "200px"}}
+                          >
+                            <Line
+                              data={{
+                                datasets: [
+                                  {
+                                    label,
+                                    lineTension: 0,
+                                    pointRadius: 0,
+                                    backgroundColor: 'rgba(255,99,132,0.2)',
+                                    borderColor: 'rgba(255,99,132,1)',
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                                    hoverBorderColor: 'rgba(255,99,132,1)',
+                                    data,
                                   },
+                                ],
+                              }}
+                              options={{
+                                animation: {
+                                  duration: 0,
                                 },
-                              ],
-                            },
-                          }}
-                        />
-                      </div>
-                    ))}
+                                maintainAspectRatio: false,
+                                tooltips: {
+                                  enabled: true,
+                                  mode: "nearest",
+                                  intersect: false,
+                                },
+                                hover: {
+                                  mode: "nearest",
+                                  intersect: false,
+                                  animationDuration: 0,
+                                },
+                                scales: {
+                                  xAxes: [
+                                    {
+                                      type: "linear",
+                                      position: "bottom",
+                                      ticks: {
+                                        autoSkip: true,
+                                        autoSkipPadding: 8,
+                                      },
+                                    },
+                                  ],
+                                },
+                              }}
+                            />
+                          </div>
+                        ))}
+                    </div>
                   </div>
                 )
             )
