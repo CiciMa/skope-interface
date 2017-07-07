@@ -281,44 +281,6 @@ export default class Page_Workspace extends React.Component {
             <label>{layerOpacity.toFixed(2)}</label>
           </div>
         </ul>
-
-        {
-                  inspectPointSelected
-                  ? (
-                    <div className="section_range">
-                        <div className="filter-min">
-                          <label>Start: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={rangeMin}
-                            max={filterMax}
-                            step="1"
-                            value={filterMin}
-                            onChange={this._bound_rangeFilterMinOnChange}
-                          />
-                          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMin}</label>
-                          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                        <div className="filter-max">
-                          <label>End: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={filterMin}
-                            max={rangeMax}
-                            step="1"
-                            value={filterMax}
-                            onChange={this._bound_rangeFilterMaxOnChange}
-                          />
-                          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMax}</label>
-                          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                    </div>
-                ) : null
-        }
       </div>
             
           <div className="section_map">
@@ -380,6 +342,40 @@ export default class Page_Workspace extends React.Component {
                 )
               : (
                 <div className="section_charts">
+
+                    <div className="section_range">
+                        <div className="filter-min">
+                          <label>Start: </label>
+                          <input
+                            className="layout_fill"
+                            type="range"
+                            min={rangeMin}
+                            max={filterMax}
+                            step="1"
+                            value={filterMin}
+                            onChange={this._bound_rangeFilterMinOnChange}
+                          />
+                          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
+                          <label>{filterMin}</label>
+                          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
+                        </div>
+                        <div className="filter-max">
+                          <label>End: </label>
+                          <input
+                            className="layout_fill"
+                            type="range"
+                            min={filterMin}
+                            max={rangeMax}
+                            step="1"
+                            value={filterMax}
+                            onChange={this._bound_rangeFilterMaxOnChange}
+                          />
+                          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
+                          <label>{filterMax}</label>
+                          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
+                        </div>
+                    </div>
+
                     {inspectPointData.map(({label, data}, dataIndex) => (
                       <div
                         key={dataIndex}
