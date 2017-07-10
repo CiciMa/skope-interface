@@ -66,7 +66,6 @@ export default class Page_Workspace extends React.Component {
     this._bound_mapOnClick = this._mapOnClick.bind(this);
       
     this._bound_closeWelcomeWindow = this._closeWelcomeWindow.bind(this);
-    this._bound_toggleMenu = this._toggleMenu.bind(this);
   }
 
   _rangeFilterOnChange (event) {
@@ -203,15 +202,6 @@ export default class Page_Workspace extends React.Component {
       closeWelcomeWindow();
   }
 
-  _toggleMenu(event) {
-      const {
-          toggleMenu,
-          menuShown,
-      } = this.props;
-      
-      toggleMenu(menuShown);
-  }
-
   render () {
     const {
       layers,
@@ -229,7 +219,6 @@ export default class Page_Workspace extends React.Component {
       rangeMax,
         
       welcomeWindowClosed,
-      menuShown,
       layerOpacity,
     } = this.props;
 
