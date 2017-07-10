@@ -332,7 +332,7 @@ export default class Page_Workspace extends React.Component {
 
         {
           !inspectPointSelected
-          ? <span>Choose a point on the map to view the corresponding charts</span>
+          ? null
           : (
               inspectPointLoading
               ? (
