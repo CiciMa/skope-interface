@@ -1,8 +1,8 @@
 .page--workspace {
-  padding: 10px;
-  background-color: white;
-  min-width: 600px;
-  min-height: 400px;
+    padding: 10px;
+    background-color: white;
+    min-width: 600px;
+    min-height: 400px;
     
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -61,8 +61,17 @@
     }
     
   .section_filter {
-    height: 100%;
-    width: 270px;
+    width: 400px;
+      
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
       
     button {
       margin: 3px;
@@ -74,30 +83,7 @@
   }
     
     .section_map {
-        height: 100%;
-        padding-right: 10px;
-        width: 500px;
-        
-        .the-map {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    .section_filter, .section_map {
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-    }
-    
-    .section_data {
-        height: 100%;
+        height: 500px;
         
         -webkit-order: 0;
         -ms-flex-order: 0;
@@ -108,6 +94,15 @@
         -webkit-align-self: auto;
         -ms-flex-item-align: auto;
         align-self: auto;
+        
+        .the-map {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .section_data {
+        display: none;
         
         display: -ms-inline-flexbox;
         display: -webkit-inline-flex;
