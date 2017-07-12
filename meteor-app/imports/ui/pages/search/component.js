@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import renderComponent from ""
 
 import {
     SearchkitManager,
     SearchkitProvider,
     Layout,
+    Toggle,
     TopBar,
     SearchBox,
     LayoutBody,
@@ -22,19 +24,52 @@ import {
     Pagination,
     InputFilter,
     Hits,
+    HitItemProps,
     NoHits,
     Panel,
+    TermQuery,
+    BoolMust,
+    RangeQuery,
     GroupedSelectedFilters,
     ViewSwitcherHits,
-    RangeFilter
+    RangeFilter,
+    CheckboxFilter,
+    RangeAccessor
 } from "searchkit";
-// import "searchkit/release/theme.css";
-
+import "searchkit/release/theme.css";
 
 
 const searchkit = new SearchkitManager(
     "http://demo.searchkit.co/api/movies/"
 );
+
+// const NewCheckboxItemComponent = (props)=> {
+//     let count = props.count*10
+//     return <CheckboxItemComponent {...props} count={count}/>
+// }
+
+export class NewRangeFilter extends RangeFilter {
+    static propTypes = {
+        startYearL:PropTypes.string.isRequired,
+        endYearL:PropTypes.string.isRequired,
+
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
+    defineAccessor() {
+        const { startYearL, endYearL } = this.props;
+        return new RangeAccessor(id,{
+            startYearL, endYearL
+        });
+    }
+    render() {
+
+    }
+}
+
 
 const App = ()=> (
     <SearchkitProvider searchkit={searchkit}>
@@ -43,28 +78,26 @@ const App = ()=> (
         <LayoutBody>
           <SideBar>
               <Panel title="Models" collapsable={true} defaultCollapsed={false}>
-                  <RefinementListFilter
-                      id="actors"
-                      // title="Actors"
-                      field="actors.raw"
-                      operator="AND"
-                      size={5}/>
+              <CheckboxFilter
+                  id="rated-r"
+                  title="Rating"
+                  label="Rated R"
+                  filter={TermQuery("rated.raw", 'R')} />
               </Panel>
             <Panel title="Data Type" collapsable={true} defaultCollapsed={false}>
-              <RefinementListFilter
-                  id="actors"
-                  // title="Actors"
-                  field="actors.raw"
-                  operator="AND"
-                  size={10}/>
+              <CheckboxFilter
+                  id="recent"
+                  title="Date"
+                  label="Recent"
+                  filter={RangeQuery("year", {gt: 2012})} />
+
             </Panel>
             <Panel title="Data Source" collapsable={true} defaultCollapsed={false}>
-              <RefinementListFilter
-                  id="countries"
-                  // title="Countries"
-                  field="countries.raw"
-                  operator="OR"
-                  size={10}/>
+              <CheckboxFilter
+                  id="old-movies"
+                  title="Movie filter"
+                  label="Old movies"
+                  filter={RangeQuery("year", {lt: 1970})} />
             </Panel>
             <InputFilter
                 id="author_q"
@@ -78,20 +111,13 @@ const App = ()=> (
               <RangeFilter
                 id="metascore"
                 field="metaScore"
-                min={0} max={100}
-                //Year
+                min={0}
+                max={100}
                 showHistogram={true}
-                title="Start Year"
-                // rangeComponent={RangeSliderInput(10, 20)}
-              />
-              <RangeFilter
-                  id="metascore"
-                  field="metaScore"
-                  min={1} max={1000}
-                  //Year
-                  showHistogram={true}
-                  title="End Year"
-                  // rangeComponent={RangeSliderInput(10)}
+                title="Year Range"
+                startYearL = "Start Year"
+                endYearL = "End Year"
+
               />
           </SideBar>
 
@@ -131,7 +157,11 @@ const App = ()=> (
                 scrollTo="body"
             />
 
-            <Hits mod="sk-hits-list" hitsPerPage={3} itemComponent={MovieHitsListItem} sourceFilter={["title", "poster", "imdbId"]}/>
+            <Hits
+                mod="sk-hits-list"
+                hitsPerPage={3}
+                itemComponent={MovieHitsListItem}
+                sourceFilter={["title", "poster", "imdbId"]}/>
             <NoHits/>
             <Pagination
                 showNumbers={true}
@@ -193,6 +223,7 @@ export default class Page_Search extends React.Component {
             updateSearchInput(inputValue);
         }
     }
+
 
     render () {
         const {
