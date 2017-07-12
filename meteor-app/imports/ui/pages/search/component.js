@@ -5,6 +5,7 @@ import {
   SearchkitManager,
   SearchkitProvider,
   Layout,
+  Pagination,
   TopBar,
   SearchBox,
   LayoutBody,
@@ -146,6 +147,8 @@ export default class Page_Search extends React.Component {
                 <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
                   sourceFilter={["title", "poster", "imdbId"]}/>
                 <NoHits/>
+
+                <Pagination showNumbers={true}/>
               </LayoutResults>
             </LayoutBody>
           </Layout>
