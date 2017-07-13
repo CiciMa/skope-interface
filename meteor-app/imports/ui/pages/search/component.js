@@ -52,10 +52,10 @@ class SearchResultItem extends React.Component {
     return (
         // <div style={{overflow: "auto"}}>
       <div style={{
-        color: "grey",
-        border: "2px solid black",
+        color: "#37517C",
+        border: "2px solid #37517C",
         margin:"25px",
-        width: '100%',
+        width: '90%',
         boxSizing: 'border-box',
         padding: 8
       }}>
@@ -64,6 +64,10 @@ class SearchResultItem extends React.Component {
         <p><b>balance</b>:{balance}</p>
         <p><b>address:</b>{address}</p>
         <p><b>email:</b>{email}</p>
+
+        <button className="button_1">View Data</button>
+        <button className="button_2">More Information</button>
+        <button className="button_3">Download</button>
       </div>
     );
   }
@@ -107,10 +111,10 @@ export default class SearchPage extends React.Component {
               options={[
                 { title: 'All' },
                 { title: 'up to 20', from: 0, to: 21 },
-                { title: '21 to 40', from: 21, to: 41 },
-                { title: '41 to 60', from: 41, to: 61 },
-                { title: '61 to 80', from: 61, to: 81 },
-                { title: '81 to 100', from: 81, to: 101 },
+                { title: '21 to 25', from: 21, to: 26 },
+                { title: '26 to 30', from: 26, to: 31 },
+                { title: '31 to 35', from: 31, to: 36 },
+                { title: '36 to 40', from: 36, to: 41 },
               ]}
             />
             <RangeFilter
