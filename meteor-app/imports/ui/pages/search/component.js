@@ -23,15 +23,57 @@ import {
   MovieHitsGridItem,
   Hits,
   NoHits,
+  DynamicRangeFilter,
+  CheckboxFilter,
+  TermQuery,
+  BoolMust,
+  RangeQuery,
 } from "searchkit";
 import "searchkit/release/theme.css";
 
 class SearchResultItem extends React.Component {
   render () {
+    const {
+      result: {
+        _index,
+        _type,
+        _id,
+        _score,
+        _source: {
+          account_number,
+          balance,
+          firstname,
+          lastname,
+          age,
+          // gender,
+          address,
+          employer,
+          email,
+          // city,
+          state,
+        },
+      },
+    } = this.props;
+
+    // const _index = this.props.result._index;
+    // const _type = this.props.result._type;
+    // const account_number = this.props.result._source.account_number;
+
     return (
-      <div style={{overflow: "auto"}}>
-        <p>Some Result (Implement this)</p>
-        <pre>{JSON.stringify(this.props, null, 2)}</pre>
+        // <div style={{overflow: "auto"}}>
+      <div style={{
+        color: "grey",
+        border: "2px solid black",
+        margin:"25px",
+        width: '100%',
+        boxSizing: 'border-box',
+        padding: 8
+      }}>
+        <p><b>lastname</b>:{lastname}</p>
+        <p><b>firstname</b>:{firstname}</p>
+        <p><b>balance</b>:{balance}</p>
+        <p><b>address:</b>{address}</p>
+        <p><b>email:</b>{email}</p>
       </div>
     );
   }
@@ -90,7 +132,7 @@ export default class Page_Search extends React.Component {
                 <InputFilter
                   id="lastname-input"
                   title="Search by last name"
-                  placeholder="Appleseed"
+                  placeholder="Search last name here"
                   searchOnChange={true}
                   prefixQueryFields={["lastname"]}
                   queryFields={["lastname"]}
@@ -100,8 +142,16 @@ export default class Page_Search extends React.Component {
                   title="State"
                   field="state"
                   operator="OR"
-                  size={5}
+                  size={4}
                 />
+                <RefinementListFilter
+                  id="city-list"
+                  title="City"
+                  field="city"
+                  operator="OR"
+                  size={4}
+                />
+
                 <NumericRefinementListFilter
                   id="age-refine"
                   title="Age Groups"
@@ -123,12 +173,13 @@ export default class Page_Search extends React.Component {
                   showHistogram={true}
                   title=""
                 />
+
                 <RefinementListFilter
-                  id="employer-list"
-                  title="Employer"
-                  field="employer"
+                  id="gender-list"
+                  title="Gender"
+                  field="gender"
                   operator="OR"
-                  size={5}
+                  size={2}
                 />
               </SideBar>
               <LayoutResults>
@@ -144,8 +195,8 @@ export default class Page_Search extends React.Component {
                   </ActionBarRow>
 
                 </ActionBar>
-                <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
-                  sourceFilter={["title", "poster", "imdbId"]}/>
+                <Hits mod="sk-hits-grid" hitsPerPage={3} itemComponent={SearchResultItem}
+                  />
                 <NoHits/>
 
                 <Pagination showNumbers={true}/>
