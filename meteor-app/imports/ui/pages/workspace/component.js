@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Line } from "react-chartjs-2";
 
+import Charts from "/imports/ui/pages/workspace/charts/container";
+
 export default class Page_Workspace extends React.Component {
 
   static propTypes = {
@@ -16,17 +18,9 @@ export default class Page_Workspace extends React.Component {
     inspectPointSelected: PropTypes.bool.isRequired,
     // The coordinate of the point being inspected.
     inspectPointCoordinate: PropTypes.arrayOf(PropTypes.number).isRequired,
-    // Indicate if the data is being loaded for the point.
-    inspectPointLoading: PropTypes.bool.isRequired,
-    // The loaded data for the point.
-    inspectPointData: PropTypes.arrayOf(PropTypes.object),
     // Callback function for selecting a point to inspect.
     selectInspectPoint: PropTypes.func.isRequired,
 
-    // Lower bound of the filter slider.
-    filterMin: PropTypes.number.isRequired,
-    // Upper bound of the filter slider.
-    filterMax: PropTypes.number.isRequired,
     // Current value of the filter slider.
     filterValue: PropTypes.number.isRequired,
       
@@ -35,8 +29,6 @@ export default class Page_Workspace extends React.Component {
       
     // Callback function for updating filter value.
     updateFilterValue: PropTypes.func.isRequired,
-    updateFilterMin: PropTypes.func.isRequired,
-    updateFilterMax: PropTypes.func.isRequired,
       
     welcomeWindowClosed: PropTypes.bool.isRequired,
     closeWelcomeWindow: PropTypes.func.isRequired,
@@ -53,14 +45,8 @@ export default class Page_Workspace extends React.Component {
     super(props);
 
     this._bound_rangeFilterOnChange = this._rangeFilterOnChange.bind(this);
-    this._bound_rangeFilterMinOnChange = this._rangeFilterMinOnChange.bind(this);
-    this._bound_rangeFilterMaxOnChange = this._rangeFilterMaxOnChange.bind(this);
     this._bound_yearStepBackButtonOnClick = this._yearStepBackButtonOnClick.bind(this);
     this._bound_yearStepForwardButtonOnClick = this._yearStepForwardButtonOnClick.bind(this);
-    this._bound_yearMinStepBackButtonOnClick = this._yearMinStepBackButtonOnClick.bind(this);
-    this._bound_yearMinStepForwardButtonOnClick = this._yearMinStepForwardButtonOnClick.bind(this);
-    this._bound_yearMaxStepBackButtonOnClick = this._yearMaxStepBackButtonOnClick.bind(this);
-    this._bound_yearMaxStepForwardButtonOnClick = this._yearMaxStepForwardButtonOnClick.bind(this);
     this._bound_layerVisibilityOnChange = this._layerVisibilityOnChange.bind(this);
     this._bound_layerOpacityOnChange = this._layerOpacityOnChange.bind(this);
     this._bound_mapOnClick = this._mapOnClick.bind(this);
@@ -78,30 +64,6 @@ export default class Page_Workspace extends React.Component {
     } = this.props;
 
     updateFilterValue(target.value);
-  }
-    
-  _rangeFilterMinOnChange (event) {
-    console.info('filter min changed', Date.now());
-
-    const target = event.currentTarget;
-    const {
-      filterValue,
-      updateFilterMin,
-    } = this.props;
-
-    updateFilterMin(target.value);
-  }
-    
-  _rangeFilterMaxOnChange (event) {
-    console.info('filter max changed', Date.now());
-
-    const target = event.currentTarget;
-    const {
-      filterValue,
-      updateFilterMax,
-    } = this.props;
-
-    updateFilterMax(target.value);
   }
 
   _layerVisibilityOnChange (event) {
@@ -144,46 +106,6 @@ export default class Page_Workspace extends React.Component {
 
     updateFilterValue(Math.min(rangeMax, filterValue + 1));
   }
-    
-  _yearMinStepBackButtonOnClick (/*event*/) {
-    const {
-      filterMin,
-      rangeMin,
-      updateFilterMin,
-    } = this.props;
-
-    updateFilterMin(Math.max(filterMin - 1, rangeMin));
-  }
-
-  _yearMinStepForwardButtonOnClick (/*event*/) {
-    const {
-      filterMin,
-      filterMax,
-      updateFilterMin,
-    } = this.props;
-
-    updateFilterMin(Math.min(filterMin + 1, filterMax));
-  }
-    
-  _yearMaxStepBackButtonOnClick (/*event*/) {
-    const {
-      filterMax,
-      filterMin,
-      updateFilterMax,
-    } = this.props;
-
-    updateFilterMax(Math.max(filterMax - 1, filterMin));
-  }
-
-  _yearMaxStepForwardButtonOnClick (/*event*/) {
-    const {
-      filterMax,
-      rangeMax,
-      updateFilterMax,
-    } = this.props;
-
-    updateFilterMax(Math.min(filterMax + 1, rangeMax));
-  }
 
   _mapOnClick (event) {
     const {
@@ -192,6 +114,7 @@ export default class Page_Workspace extends React.Component {
 
     console.log(event.latLongCoordinate);
     selectInspectPoint(event.latLongCoordinate);
+    window.open('/workspace/charts?longitude=' + event.latLongCoordinate[0] + '&latitude=' + event.latLongCoordinate[1], '_blank', 'height=600,width=400');
   }
 
   _closeWelcomeWindow(event) {
@@ -204,16 +127,14 @@ export default class Page_Workspace extends React.Component {
 
   render () {
     const {
+      store,
+        
       layers,
       toggleLayer,
 
       inspectPointSelected,
       inspectPointCoordinate,
-      inspectPointLoading,
-      inspectPointData,
-
-      filterMin,
-      filterMax,
+ 
       filterValue,
       rangeMin,
       rangeMax,
@@ -318,111 +239,6 @@ export default class Page_Workspace extends React.Component {
               <map-control-simple-layer-list></map-control-simple-layer-list>
             </map-view>
           </div>
-
-        {
-          !inspectPointSelected
-          ? null
-          : (
-              inspectPointLoading
-              ? (
-                  <div>
-                    <span>Loading...</span>
-                  </div>
-                )
-              : (
-                <div className="section_data">
-
-                    <div className="section_range">
-                        <div className="filter-min">
-                          <label>Start: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={rangeMin}
-                            max={filterMax}
-                            step="1"
-                            value={filterMin}
-                            onChange={this._bound_rangeFilterMinOnChange}
-                          />
-                          <button onClick={this._bound_yearMinStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMin}</label>
-                          <button onClick={this._bound_yearMinStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                        <div className="filter-max">
-                          <label>End: </label>
-                          <input
-                            className="layout_fill"
-                            type="range"
-                            min={filterMin}
-                            max={rangeMax}
-                            step="1"
-                            value={filterMax}
-                            onChange={this._bound_rangeFilterMaxOnChange}
-                          />
-                          <button onClick={this._bound_yearMaxStepBackButtonOnClick}>&lt;</button>
-                          <label>{filterMax}</label>
-                          <button onClick={this._bound_yearMaxStepForwardButtonOnClick}>&gt;</button>
-                        </div>
-                    </div>
-
-                    <div className="section_charts">
-                        {inspectPointData.map(({label, data}, dataIndex) => (
-                          <div
-                            key={dataIndex}
-                            style={{height: "200px"}}
-                          >
-                            <Line
-                              data={{
-                                datasets: [
-                                  {
-                                    label,
-                                    lineTension: 0,
-                                    pointRadius: 0,
-                                    backgroundColor: 'rgba(255,99,132,0.2)',
-                                    borderColor: 'rgba(255,99,132,1)',
-                                    borderWidth: 1,
-                                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                                    hoverBorderColor: 'rgba(255,99,132,1)',
-                                    data,
-                                  },
-                                ],
-                              }}
-                              options={{
-                                animation: {
-                                  duration: 0,
-                                },
-                                maintainAspectRatio: false,
-                                tooltips: {
-                                  enabled: true,
-                                  mode: "nearest",
-                                  intersect: false,
-                                },
-                                hover: {
-                                  mode: "nearest",
-                                  intersect: false,
-                                  animationDuration: 0,
-                                },
-                                scales: {
-                                  xAxes: [
-                                    {
-                                      type: "linear",
-                                      position: "bottom",
-                                      ticks: {
-                                        autoSkip: true,
-                                        autoSkipPadding: 8,
-                                      },
-                                    },
-                                  ],
-                                },
-                              }}
-                            />
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )
-            )
-        }
     </div>
     );
   }

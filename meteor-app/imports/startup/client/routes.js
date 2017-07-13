@@ -15,6 +15,7 @@ import Layout_FullWindow from "/imports/ui/layouts/full-window/container";
 import Page_Home from "/imports/ui/pages/home/container";
 import Page_Search from "/imports/ui/pages/search/container";
 import Page_Workspace from "/imports/ui/pages/workspace/container";
+import Page_Charts from "/imports/ui/pages/workspace/charts/container";
 import Page_NotFound from "/imports/ui/pages/not-found/container";
 
 const store = createStore(reducers);
@@ -111,9 +112,7 @@ FlowRouter.route("/workspace", {
 
     store.dispatch({
       type: actions.WORKSPACE_SET_FILTER_FROM_URL.type,
-      value1: queryParams.filterValue,
-      value2: queryParams.filterMin,
-      value3: queryParams.filterMax,
+      value: queryParams.filterValue,
     });
 
     mount(Layout_FullWindow, {
@@ -124,24 +123,42 @@ FlowRouter.route("/workspace", {
           updateFilterValue: (newValue) => {
             FlowRouter.go(path, {}, {
               filterValue: newValue,
-              filterMin: queryParams.filterMin,
-              filterMax: queryParams.filterMax,
             });
           },
-          updateFilterMin: (newValue) => {
-            FlowRouter.go(path, {}, {
-              filterValue: queryParams.filterValue,
-              filterMax: queryParams.filterMax,
-              filterMin: newValue,
-            });
-          },
-          updateFilterMax: (newValue) => {
-            FlowRouter.go(path, {}, {
-              filterValue: queryParams.filterValue,
-              filterMax: newValue,
-              filterMin: queryParams.filterMin,
-            });
-          },
+        }} />
+      ),
+    });
+  },
+});
+
+FlowRouter.route("/workspace/charts", {
+  name: "App.workspace.charts",
+  action(params, queryParams) {
+
+    const {
+      path,
+    } = this;
+
+    store.dispatch({
+      type: actions.PAGE_ENTRY.type,
+      path,
+    });
+      
+    const coord = [parseFloat(queryParams.longitude), parseFloat(queryParams.latitude)];
+    Meteor.call("timeseries.get", {lon: coord[0], lat: coord[1]}, (error, result) => {
+      store.dispatch({
+          type: actions.CHARTS_INSPECT_POINT_RESOLVE_DATA.type,
+          coordinate: coord,
+          error,
+          result,
+      });
+    });
+
+    mount(Layout_FullWindow, {
+      store,
+      body: (
+        <Page_Charts {...{
+          store,
         }} />
       ),
     });

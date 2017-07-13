@@ -3,19 +3,14 @@
  */
 
 import {
-  rangeMin,
   rangeMax,
 } from "/imports/ui/consts";
 
 export const WORKSPACE_SET_FILTER_FROM_URL = (state, action) => {
   const {
-    value1,
-    value2,
-    value3,
+    value,
   } = action;
-  const filterValue = typeof value1 === 'undefined' ? rangeMax : parseInt(value1);
-  const filterMin = typeof value2 === 'undefined' ? rangeMin : parseInt(value2);
-  const filterMax = typeof value3 === 'undefined' ? rangeMax : parseInt(value3);
+  const filterValue = typeof value === 'undefined' ? rangeMax : parseInt(value);
 
   return {
     ...state,
@@ -24,8 +19,6 @@ export const WORKSPACE_SET_FILTER_FROM_URL = (state, action) => {
       ...state.workspace,
 
       filterValue,
-      filterMin,
-      filterMax,
     },
   };
 };

@@ -23,15 +23,10 @@ export default createContainer((props) => {
 
       inspectPointSelected,
       inspectPointCoordinate,
-      inspectPointLoading,
-      inspectPointData,
-
-      filterMin,
-      filterMax,
+      
       filterValue,
         
       welcomeWindowClosed,
-      menuShown,
       layerOpacity,
     },
   } = store.getState();
@@ -61,43 +56,14 @@ export default createContainer((props) => {
 
     inspectPointSelected,
     inspectPointCoordinate,
-    inspectPointLoading,
-    inspectPointData: Object.keys(inspectPointData ? inspectPointData.data : {}).map((sourceName) => ({
-      label: sourceName,
-      data: inspectPointData.data[sourceName]
-            .filter((value, valueIndex) => (valueIndex >= filterMin && valueIndex <= filterMax))
-            .map((value, valueIndex) => ({
-              x: filterMin + valueIndex,
-              y: value,
-            })),
-    })),
     selectInspectPoint: (coord) => {
-      if (coord) {
-        store.dispatch({
-          type: actions.WORKSPACE_INSPECT_POINT.type,
-          selected: true,
-          coordinate: coord,
-        });
-
-        Meteor.call("timeseries.get", {lon: coord[0], lat: coord[1]}, (error, result) => {
-          store.dispatch({
-            type: actions.WORKSPACE_INSPECT_POINT_RESOLVE_DATA.type,
-            coordinate: coord,
-            error,
-            result,
-          });
-        });
-      } else {
-        store.dispatch({
-          type: actions.WORKSPACE_INSPECT_POINT.type,
-          selected: false,
-          coordinate: [0, 0],
-        });
-      }
+      store.dispatch({
+        type: actions.WORKSPACE_INSPECT_POINT.type,
+        selected: true,
+        coordinate: coord,
+      });
     },
 
-    filterMin,
-    filterMax,
     filterValue,
     rangeMin,
     rangeMax,
@@ -106,13 +72,6 @@ export default createContainer((props) => {
     closeWelcomeWindow: () => {
         store.dispatch({
           type: actions.WORKSPACE_CLOSE_WELCOME_WINDOW.type,
-        });
-    },
-      
-    menuShown,
-    toggleMenu: (menuShown) => {
-        store.dispatch({
-          type: actions.WORKSPACE_TOGGLE_MENU.type,
         });
     },
   };
