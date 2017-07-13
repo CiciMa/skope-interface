@@ -154,13 +154,8 @@ FlowRouter.route("/workspace/charts", {
       });
     });
 
-    mount(Layout_FullWindow, {
+    mount(Page_Charts, {
       store,
-      body: (
-        <Page_Charts {...{
-          store,
-        }} />
-      ),
     });
   },
 });

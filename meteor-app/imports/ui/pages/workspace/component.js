@@ -114,7 +114,7 @@ export default class Page_Workspace extends React.Component {
 
     console.log(event.latLongCoordinate);
     selectInspectPoint(event.latLongCoordinate);
-    window.open('/workspace/charts?longitude=' + event.latLongCoordinate[0] + '&latitude=' + event.latLongCoordinate[1], '_blank', 'height=600,width=400');
+    window.open('/workspace/charts?longitude=' + event.latLongCoordinate[0] + '&latitude=' + event.latLongCoordinate[1], '_blank', 'height=600,width=800');
   }
 
   _closeWelcomeWindow(event) {
