@@ -2,39 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-    SearchkitManager,
-    SearchkitProvider,
-    Layout,
-    Toggle,
-    TopBar,
-    SearchBox,
-    LayoutBody,
-    SideBar,
-    NumericRefinementListFilter,
-    HierarchicalMenuFilter,
-    RefinementListFilter,
-    LayoutResults,
-    ActionBar,
-    ActionBarRow,
-    HitsStats,
-    SelectedFilters,
-    ResetFilters,
-    MovieHitsGridItem,
-    MovieHitsListItem,
-    Pagination,
-    InputFilter,
-    Hits,
-    HitItemProps,
-    NoHits,
-    Panel,
-    TermQuery,
-    BoolMust,
-    RangeQuery,
-    GroupedSelectedFilters,
-    ViewSwitcherHits,
-    RangeFilter,
-    CheckboxFilter,
-    RangeAccessor
+  SearchkitManager,
+  SearchkitProvider,
+  Layout,
+  Pagination,
+  Panel,
+  TopBar,
+  SearchBox,
+  LayoutBody,
+  SideBar,
+  RefinementListFilter,
+  NumericRefinementListFilter,
+  RangeFilter,
+  LayoutResults,
+  InputFilter,
+  ActionBar,
+  ActionBarRow,
+  HitsStats,
+  SelectedFilters,
+  ResetFilters,
+  MovieHitsGridItem,
+  Hits,
+  NoHits,
+  DynamicRangeFilter,
+  CheckboxFilter,
+  TermQuery,
+  BoolMust,
+  RangeQuery,
 } from "searchkit";
 import "searchkit/release/theme.css";
 
@@ -83,6 +77,7 @@ class SearchResultItem extends React.Component {
         <button className="button_2">More Information</button>
         <button className="button_3">Download</button>
     </div>
+
     );
   }
 }
@@ -152,7 +147,7 @@ export default class Page_Search extends React.Component {
                   title="State"
                   field="state"
                   operator="OR"
-                  size={5}
+                  size={4}
                 />
                 <RefinementListFilter
                   id="city-list"
@@ -161,7 +156,7 @@ export default class Page_Search extends React.Component {
                   operator="OR"
                   size={4}
                 />
-                 <NumericRefinementListFilter
+                <NumericRefinementListFilter
                   id="age-refine"
                   title="Age Groups"
                   field="age"
@@ -189,7 +184,7 @@ export default class Page_Search extends React.Component {
                   title="Gender"
                   field="gender"
                   operator="OR"
-                  size={5}
+                  size={2}
                 />
                 </Panel>
               </SideBar>
