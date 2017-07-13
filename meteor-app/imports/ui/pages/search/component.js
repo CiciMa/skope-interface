@@ -2,37 +2,87 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-  SearchkitManager,
-  SearchkitProvider,
-  Layout,
-  Pagination,
-  TopBar,
-  SearchBox,
-  LayoutBody,
-  SideBar,
-  RefinementListFilter,
-  NumericRefinementListFilter,
-  RangeFilter,
-  LayoutResults,
-  InputFilter,
-  ActionBar,
-  ActionBarRow,
-  HitsStats,
-  SelectedFilters,
-  ResetFilters,
-  MovieHitsGridItem,
-  Hits,
-  NoHits,
+    SearchkitManager,
+    SearchkitProvider,
+    Layout,
+    Toggle,
+    TopBar,
+    SearchBox,
+    LayoutBody,
+    SideBar,
+    NumericRefinementListFilter,
+    HierarchicalMenuFilter,
+    RefinementListFilter,
+    LayoutResults,
+    ActionBar,
+    ActionBarRow,
+    HitsStats,
+    SelectedFilters,
+    ResetFilters,
+    MovieHitsGridItem,
+    MovieHitsListItem,
+    Pagination,
+    InputFilter,
+    Hits,
+    HitItemProps,
+    NoHits,
+    Panel,
+    TermQuery,
+    BoolMust,
+    RangeQuery,
+    GroupedSelectedFilters,
+    ViewSwitcherHits,
+    RangeFilter,
+    CheckboxFilter,
+    RangeAccessor
 } from "searchkit";
 import "searchkit/release/theme.css";
 
+
+
 class SearchResultItem extends React.Component {
   render () {
+      const {
+          result: {
+              _index,
+              _type,
+              _id,
+              _score,
+              _source: {
+                  account_number,
+                  balance,
+                  firstname,
+                  lastname,
+                  age,
+                  // gender,
+                  address,
+                  employer,
+                  email,
+                  // city,
+                  state,
+              },
+          },
+      } = this.props;
     return (
-      <div style={{overflow: "auto"}}>
-        <p>Some Result (Implement this)</p>
-        <pre>{JSON.stringify(this.props, null, 2)}</pre>
-      </div>
+        // <pre>{JSON.stringify(this.props, null, 2)}</pre>
+        <div style={{
+            color: "#37517C",
+            border: "2px solid #37517C",
+            margin:"25px",
+            width: '90%',
+            boxSizing: 'border-box',
+            padding: 8
+        }}>
+            <p><b>lastname</b>:{lastname}</p>
+            <p><b>firstname</b>:{firstname}</p>
+            <p><b>balance</b>:{balance}</p>
+            <p><b>address:</b>{address}</p>
+            <p><b>email:</b>{email}</p>
+
+        <button className="button_1">View Data</button>
+        <button className="button_2">More Information</button>
+        <button className="button_3">Download</button>
+    </div>
     );
   }
 }
@@ -77,20 +127,22 @@ export default class Page_Search extends React.Component {
 
     return (
       <div className="page--search">
+        {/*<div>*/}
+           {/*<input*/}
+               {/*type="search"*/}
+               {/*id="mySearch"*/}
+               {/*onChange={this.props.updateSearchInput}*/}
+           {/*></input>*/}
+        {/*</div>*/}
         <SearchkitProvider searchkit={searchkit}>
           <Layout>
-            <TopBar>
-              <SearchBox
-                autofocus={true}
-                searchOnChange={true}
-                prefixQueryFields={["actors^1","type^2","languages","title^10"]}/>
-            </TopBar>
             <LayoutBody>
               <SideBar>
+                <Panel title="" defaultCollapsed={false}>
                 <InputFilter
                   id="lastname-input"
                   title="Search by last name"
-                  placeholder="Appleseed"
+                  placeholder="Search last name here"
                   searchOnChange={true}
                   prefixQueryFields={["lastname"]}
                   queryFields={["lastname"]}
@@ -102,37 +154,60 @@ export default class Page_Search extends React.Component {
                   operator="OR"
                   size={5}
                 />
-                <NumericRefinementListFilter
+                <RefinementListFilter
+                  id="city-list"
+                  title="City"
+                  field="city"
+                  operator="OR"
+                  size={4}
+                />
+                 <NumericRefinementListFilter
                   id="age-refine"
                   title="Age Groups"
                   field="age"
                   options={[
                     {title:"All"},
                     {title:"up to 20", from:0, to:21},
-                    {title:"21 to 40", from:21, to:41},
-                    {title:"41 to 60", from:41, to:61},
-                    {title:"61 to 80", from:61, to:81},
-                    {title:"81 to 100", from:81, to:101},
+                    {title:"21 to 25", from:21, to:26},
+                    {title:"26 to 30", from:26, to:31},
+                    {title:"31 to 35", from:31, to:36},
+                    {title:"36 to 40", from:36, to:41},
                   ]}
                 />
-                <RangeFilter
+                <Panel title="Age Range" collapsable={false} defaultCollapsed={false}>
+                  <RangeFilter
                   field="age"
                   id="age-range"
                   min={0}
                   max={100}
                   showHistogram={true}
                   title=""
-                />
+                  />
+                </Panel>
                 <RefinementListFilter
-                  id="employer-list"
-                  title="Employer"
-                  field="employer"
+                  id="gender-list"
+                  title="Gender"
+                  field="gender"
                   operator="OR"
                   size={5}
                 />
+                </Panel>
               </SideBar>
+
               <LayoutResults>
                 <ActionBar>
+                  <ActionBarRow>
+                    <Panel>
+                      <div className="search_box">
+                        <SearchBox
+                            autofocus={true}
+                            searchOnChange={true}
+                            prefixQueryFields={["lastname","age","employer","city"]}
+                            placeholder={"Keyword Search"}
+                        />
+                      </div>
+                    </Panel>
+                  </ActionBarRow>
 
                   <ActionBarRow>
                     <HitsStats/>
@@ -144,11 +219,21 @@ export default class Page_Search extends React.Component {
                   </ActionBarRow>
 
                 </ActionBar>
-                <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
-                  sourceFilter={["title", "poster", "imdbId"]}/>
+                {/*<ViewSwitcherHits*/}
+                    {/*hitsPerPage={12} highlightFields={["lastname","age"]}*/}
+                    {/*hitComponents = {[*/}
+                        {/*{key:"grid", title:"Grid", itemComponent:SearchResultItem, defaultOption:true},*/}
+                        {/*{key:"list", title:"List", itemComponent:SearchResultItem}*/}
+                    {/*]}*/}
+                    {/*scrollTo="body"*/}
+                {/*/>*/}
+                <Hits
+                    mod="sk-hits-list"
+                    hitsPerPage={3}
+                    itemComponent={SearchResultItem} />
                 <NoHits/>
-
-                <Pagination showNumbers={true}/>
+                <Pagination
+                    showNumbers={true}/>
               </LayoutResults>
             </LayoutBody>
           </Layout>
