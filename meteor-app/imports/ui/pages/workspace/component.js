@@ -1,9 +1,68 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Line } from "react-chartjs-2";
+import ifvisible from "ifvisible.js";
 
 import Charts from "/imports/ui/pages/workspace/charts/container";
 
+let theWindow = null;
+
+/**
+ * Helper function to minimize a window.
+ * @param {Window} w
+ */
+function Minimize (w) {
+  // There's no way of truely minimizing the window.
+  // The work-around here is to move it out of the screen.
+    w.blur();
+    w.resizeTo(0, 0);
+    w.moveTo(screen.width, screen.height);
+}
+
+/**
+ * Helper function to restore a minimized window.
+ * @param {Window} w
+ */
+function RestoreMinimized(w) {
+    const { width, height, x, y } = w._minimizeRestore;
+    w.moveTo(x, y);
+    w.resizeTo(width, height);
+    w.focus();
+}
+
+function openWindow(coord) {
+    if(theWindow) {
+        theWindow.close();
+    }
+    
+    theWindow = window.open('/workspace/charts?longitude=' + coord[0] + '&latitude=' + coord[1], '_blank', 'height=600,width=800,menubar=no,status=no,titlebar=no');
+    
+    theWindow.onfocus = () => {
+      RestoreMinimized(theWindow);
+    };
+    
+    theWindow._minimizeRestore = {
+      width: theWindow.outerWidth,
+      height: theWindow.outerHeight,
+      x: theWindow.screenX,
+      y: theWindow.screenY,
+    };
+}
+
+ifvisible.on("blur", function () {
+    if (theWindow) {
+        Minimize(theWindow);
+    }
+});
+
+// Close all child windows when the parent window closes.
+window.onbeforeunload = () => {
+    if (theWindow) {
+        theWindow.close();
+        theWindow = null;
+    }
+};
+    
 export default class Page_Workspace extends React.Component {
 
   static propTypes = {
@@ -114,7 +173,7 @@ export default class Page_Workspace extends React.Component {
 
     console.log(event.latLongCoordinate);
     selectInspectPoint(event.latLongCoordinate);
-    window.open('/workspace/charts?longitude=' + event.latLongCoordinate[0] + '&latitude=' + event.latLongCoordinate[1], '_blank', 'height=600,width=800');
+    openWindow(event.latLongCoordinate);
   }
 
   _closeWelcomeWindow(event) {
