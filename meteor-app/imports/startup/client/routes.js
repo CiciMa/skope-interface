@@ -1,36 +1,35 @@
-import { FlowRouter } from "meteor/kadira:flow-router";
-import React from "react";
-import { mount } from "react-mounter";
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import React from 'react';
+import { mount } from 'react-mounter';
 
-import { createStore } from "/imports/helpers/tracker-redux";
+import { createStore } from 'meteor/zodiase:reactive-redux-store';
 
 // Import actions for the redux store.
-import * as actions from "/imports/ui/actions";
+import * as actions from '/imports/ui/actions';
 // Import reducers for the redux store.
-import reducers from "/imports/ui/reducers";
+import reducers from '/imports/ui/reducers';
 
 // Import needed templates
-import Layout_Main from "/imports/ui/layouts/main/container";
-import Layout_FullWindow from "/imports/ui/layouts/full-window/container";
-import Page_Home from "/imports/ui/pages/home/container";
-import Page_Search from "/imports/ui/pages/search/container";
-import Page_Workspace from "/imports/ui/pages/workspace/container";
-import Page_NotFound from "/imports/ui/pages/not-found/container";
+import MainLayout from '/imports/ui/layouts/main/container';
+import FullWindowLayout from '/imports/ui/layouts/full-window/container';
+import HomePage from '/imports/ui/pages/home/container';
+import SearchPage from '/imports/ui/pages/search/container';
+import WorkspacePage from '/imports/ui/pages/workspace/container';
+import NotFoundPage from '/imports/ui/pages/not-found/container';
 
 const store = createStore(reducers);
 //! Attach to window for debugging.
 window.store = store;
 
 // Set up all routes in the app
-FlowRouter.route("/", {
-  name: "App.home",
+FlowRouter.route('/', {
+  name: 'App.home',
   action() {
-
     const {
-      //group,
-      //name,
+      // group,
+      // name,
       path,
-      //pathDef,
+      // pathDef,
     } = this;
 
     store.dispatch({
@@ -38,68 +37,41 @@ FlowRouter.route("/", {
       path,
     });
 
-    mount(Layout_Main, {
+    mount(MainLayout, {
       store,
-      body: <Page_Home/>,
+      body: <HomePage />,
     });
   },
 });
 
-FlowRouter.route("/search", {
-  name: "App.search",
-  action(params, queryParams) {
-
+FlowRouter.route('/search', {
+  name: 'App.search',
+  action() {
     const {
       path,
     } = this;
-    const {
-      search: {
-        input: prevSearchString,
-      },
-    } = store.getState();
-    const nextSearchString = queryParams.q;
 
     store.dispatch({
       type: actions.PAGE_ENTRY.type,
       path,
     });
 
-    store.dispatch({
-      type: actions.SEARCH_SET_INPUT_FROM_URL.type,
-      value: nextSearchString,
-    });
-
-    if (nextSearchString !== prevSearchString) {
-      Meteor.call("search", {input: nextSearchString}, (error, result) => {
-        store.dispatch({
-          type: actions.SEARCH_RESOLVE_DATA.type,
-          input: nextSearchString,
-          error,
-          result,
-        });
-      });
-    }
-
-    mount(Layout_Main, {
+    mount(MainLayout, {
       store,
       body: (
-        <Page_Search {...{
-          store,
-          updateSearchInput: (newValue) => {
-            FlowRouter.go(path, {}, {
-              q: newValue,
-            });
-          },
-        }}/>
+        <SearchPage
+          {...{
+            store,
+          }}
+        />
       ),
     });
   },
 });
 
-FlowRouter.route("/workspace", {
-  name: "App.workspace",
+FlowRouter.route('/workspace', {
+  name: 'App.workspace',
   action(params, queryParams) {
-
     const {
       path,
     } = this;
@@ -114,17 +86,19 @@ FlowRouter.route("/workspace", {
       value: queryParams.filterValue,
     });
 
-    mount(Layout_FullWindow, {
+    mount(FullWindowLayout, {
       store,
       body: (
-        <Page_Workspace {...{
-          store,
-          updateFilterValue: (newValue) => {
-            FlowRouter.go(path, {}, {
-              filterValue: newValue,
-            });
-          },
-        }} />
+        <WorkspacePage
+          {...{
+            store,
+            updateFilterValue: (newValue) => {
+              FlowRouter.go(path, {}, {
+                filterValue: newValue,
+              });
+            },
+          }}
+        />
       ),
     });
   },
@@ -132,7 +106,6 @@ FlowRouter.route("/workspace", {
 
 FlowRouter.notFound = {
   action() {
-
     const {
       path,
     } = this;
@@ -142,8 +115,8 @@ FlowRouter.notFound = {
       path,
     });
 
-    mount(Layout_Main, {
-      body: <Page_NotFound/>,
+    mount(MainLayout, {
+      body: <NotFoundPage />,
     });
   },
 };
