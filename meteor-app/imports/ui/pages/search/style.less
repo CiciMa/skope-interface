@@ -1,4 +1,62 @@
 .page--search {
+  img {
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+    align-items: baseline;
+  }
+
+  .container{
+    padding: 8px;
+    display: inline-block;
+    width: 90%;
+    margin: 25px;
+    border: 2px solid #37517C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    justify-content: space-around;
+    flex-direction:row;
+  }
+  .title-item{
+    position: relative;
+    align-items: stretch;
+    margin: 10px;
+  }
+  .date{
+    text-align:right;
+  }
+  .line-item{
+    border-top: 2px solid #37517C;
+  }
+  .column{
+    display: flex;
+    //flex-direction: row;
+    position: relative;
+    align-items: stretch;
+    overflow: auto;
+  }
+  .column-item{
+    //border: 1px solid #37517C;
+    display: inline-block;
+    border-radius: 1px;
+    box-sizing: border-box;
+    flex-direction: row;
+    margin: 10px;
+    text-align: left;
+    text-after-overflow: justify;
+  }
+  .button{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: stretch;
+
+  }
+  .button-item{
+    margin: 10px;
+  }
+
+
   display: flex;
   flex-direction: row;
 

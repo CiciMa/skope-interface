@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Appbar } from 'muicss/react';
 
 import {
   SearchkitManager,
@@ -20,6 +21,7 @@ import {
   NoHits,
 } from 'searchkit';
 import '/node_modules/searchkit/release/theme.css';
+
 
 class SearchResultItem extends React.Component {
   render () {
@@ -51,25 +53,34 @@ class SearchResultItem extends React.Component {
 
     return (
         // <div style={{overflow: "auto"}}>
-      <div style={{
-        color: "#37517C",
-        border: "2px solid #37517C",
-        margin:"25px",
-        width: '90%',
-        boxSizing: 'border-box',
-        padding: 8
-      }}
-      >
-        <p><b>lastname</b>:{lastname}</p>
-        <p><b>firstname</b>:{firstname}</p>
-        <p><b>balance</b>:{balance}</p>
-        <p><b>address:</b>{address}</p>
-        <p><b>email:</b>{email}</p>
+        <div className="container">
+          <Appbar className="title-item">
+            <div className="header">PaleoCAR</div>
+            <div className="date">Run date:</div>
+          </Appbar>
 
-        <button className="button_1">View Data</button>
-        <button className="button_2">More Information</button>
-        <button className="button_3">Download</button>
-    </div>
+          <div className="column" >
+            <div className="column-item">
+              <img src="http://www.openskope.org/wp-content/uploads/2016/02/ScreenShot001.bmp"></img>
+            </div>
+
+            <div className="column-item">
+              <p><b>Lastname</b>:{lastname}</p>
+              <p><b>Firstname</b>:{firstname}</p>
+            </div>
+            <div className="column-item">
+              <p><b>Balance</b>:{balance}</p>
+              <p><b>Address:</b>{address}</p>
+              <p><b>Email:</b>{email}</p>
+            </div>
+          </div>
+
+          <div className="button">
+            <Button className="button-item" variant="flat" color="primary">View Data</Button>
+            <Button className="button-item" variant="flat" color="primary" >More Information</Button>
+            <Button className="button-item" variant="flat" color="primary">Download</Button>
+          </div>
+        </div>
     );
   }
 }
