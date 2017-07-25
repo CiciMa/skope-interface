@@ -27,22 +27,18 @@ class SearchResultItem extends React.Component {
   render () {
     const {
       result: {
-        _index,
-        _type,
-        _id,
-        _score,
         _source: {
-          account_number,
-          balance,
-          firstname,
-          lastname,
-          age,
-          // gender,
-          address,
-          employer,
-          email,
-          // city,
-          state,
+          modelName,
+          creator,
+          creationDate,
+          status,
+          rating,
+          keywords,
+          resultTypes,
+          startDate,
+          endDate,
+          area,
+          inputs,
         },
       },
     } = this.props;
@@ -53,34 +49,32 @@ class SearchResultItem extends React.Component {
 
     return (
         // <div style={{overflow: "auto"}}>
-        <div className="container">
-          <Appbar className="title-item">
-            <div className="header">PaleoCAR</div>
-            <div className="date">Run date:</div>
-          </Appbar>
-
-          <div className="column" >
-            <div className="column-item">
-              <img src="http://www.openskope.org/wp-content/uploads/2016/02/ScreenShot001.bmp"></img>
+        <div className = "container">
+          <div className= "result-container">
+            <Appbar className="appbar">
+              <div className="header">{modelName}</div>
+              <div className="date">Run date: {creationDate}</div>
+            </Appbar>
+            <div className="column">
+              <div className="column-item">
+                <img src="http://www.openskope.org/wp-content/uploads/2016/02/ScreenShot001.bmp"></img>
+              </div>
+              <div className="column-item">
+                <p><b>Creator:</b>{creator}</p>
+                <p><b>Status:</b>{status}</p>
+              </div>
+              <div className="column-item">
+                <p><b>Rating:</b>{rating}</p>
+              </div>
             </div>
-
-            <div className="column-item">
-              <p><b>Lastname</b>:{lastname}</p>
-              <p><b>Firstname</b>:{firstname}</p>
+            <div className="button-items">
+              <Button color="primary">View Data</Button>
+              <Button color="primary">Download</Button>
+              <Button color="primary">More Information</Button>
             </div>
-            <div className="column-item">
-              <p><b>Balance</b>:{balance}</p>
-              <p><b>Address:</b>{address}</p>
-              <p><b>Email:</b>{email}</p>
-            </div>
-          </div>
-
-          <div className="button">
-            <Button className="button-item" variant="flat" color="primary">View Data</Button>
-            <Button className="button-item" variant="flat" color="primary" >More Information</Button>
-            <Button className="button-item" variant="flat" color="primary">Download</Button>
           </div>
         </div>
+
     );
   }
 }
@@ -110,44 +104,50 @@ export default class SearchPage extends React.Component {
               queryFields={['lastname']}
             />
             <RefinementListFilter
-              id="state-list"
-              title="State"
-              field="state"
+              id="modelname-list"
+              title="Modelname"
+              field="modelName"
               operator="OR"
               size={4}
             />
-            <NumericRefinementListFilter
-              id="age-refine"
-              title="Age Groups"
-              field="age"
-              options={[
-                { title: 'All' },
-                { title: 'up to 20', from: 0, to: 21 },
-                { title: '21 to 25', from: 21, to: 26 },
-                { title: '26 to 30', from: 26, to: 31 },
-                { title: '31 to 35', from: 31, to: 36 },
-                { title: '36 to 40', from: 36, to: 41 },
-              ]}
+            {/*<NumericRefinementListFilter*/}
+              {/*id="rating-refine"*/}
+              {/*title="Rating Groups"*/}
+              {/*field="rating"*/}
+              {/*options={[*/}
+                {/*{ title: 'All' },*/}
+                {/*{ title: 'up to 1', from: 0, to: 1 },*/}
+                {/*{ title: '1 to 2', from: 1, to: 2 },*/}
+                {/*{ title: '2 to 3', from: 2, to: 3 },*/}
+                {/*{ title: '3 to 4', from: 3, to: 4 },*/}
+                {/*{ title: '4 to 5', from: 4, to: 5 },*/}
+              {/*]}*/}
+            {/*/>*/}
+            <RefinementListFilter
+                id="rating-list"
+                title="Rating"
+                field="rating"
+                size={5}
             />
             <RangeFilter
-              field="age"
-              id="age-range"
+              field="rating"
+              id="rating-range"
               min={0}
-              max={100}
+              max={10}
               showHistogram
               title=""
             />
             <RefinementListFilter
-              id="gender-list"
-              title="Gender"
-              field="gender"
+              id="resultTypes-list"
+              title="ResultTypes"
+              field="resultTypes"
               operator="OR"
-              size={2}
+              size={5}
             />
             <RefinementListFilter
-              id="city-list"
-              title="City"
-              field="city"
+              id="inputs-list"
+              title="Input"
+              field="inputs"
               operator="OR"
               size={4}
             />
