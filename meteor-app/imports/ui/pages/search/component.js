@@ -67,10 +67,10 @@ class SearchResultItem extends React.Component {
                 <p><b>Rating:</b>{rating}</p>
               </div>
             </div>
-            <div className="button-items">
-              <Button color="primary">View Data</Button>
-              <Button color="primary">Download</Button>
-              <Button color="primary">More Information</Button>
+            <div className="button">
+              <Button className="button-item" color="primary">View Data</Button>
+              <Button className="button-item" color="primary">Download</Button>
+              <Button className="button-item" color="primary">More Information</Button>
             </div>
           </div>
         </div>
@@ -105,9 +105,11 @@ export default class SearchPage extends React.Component {
             />
             <RefinementListFilter
               id="modelname-list"
-              title="Modelname"
+              title="Model Name"
               field="modelName"
               operator="OR"
+              orderKey="_term"
+              orderDirection="asc"
               size={4}
             />
             {/*<NumericRefinementListFilter*/}
@@ -127,6 +129,9 @@ export default class SearchPage extends React.Component {
                 id="rating-list"
                 title="Rating"
                 field="rating"
+                operator="OR"
+                orderKey="_term"
+                orderDirection="asc"
                 size={5}
             />
             <RangeFilter
@@ -139,9 +144,11 @@ export default class SearchPage extends React.Component {
             />
             <RefinementListFilter
               id="resultTypes-list"
-              title="ResultTypes"
+              title="Result Types"
               field="resultTypes"
               operator="OR"
+              orderKey="_term"
+              orderDirection="asc"
               size={5}
             />
             <RefinementListFilter
@@ -149,6 +156,8 @@ export default class SearchPage extends React.Component {
               title="Input"
               field="inputs"
               operator="OR"
+              orderKey="_term"
+              orderDirection="asc"
               size={4}
             />
 
