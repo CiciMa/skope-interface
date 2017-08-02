@@ -12,6 +12,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-runtime": "^6.20.0",
     "chart.js": "^2.5.0",
+    "http-proxy": "^1.16.2",
     "ifvisible.js": "^1.0.6",
     "lodash": "^4.17.4",
     "material-components-web": "^0.16.0",
